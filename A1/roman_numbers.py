@@ -6,8 +6,8 @@ def convert_to_roman_numeral(positive_int):
 
     :param positive_int: a positive integer
     :precondition: positive_int must be positive and in [1, 10000]
-    :postcondition: Converts positive_int into its Roman numeral
-    :return: The Roman numeral as a string
+    :postcondition: converts positive_int into its Roman numeral
+    :return: the Roman numeral as a string
 
     >>> convert_to_roman_numeral(0)
 
