@@ -9,7 +9,7 @@ def colour_mixer():
     c1 = input("Enter a primary colour (red, yellow, or blue): ").strip().lower()
     c2 = input("Enter a different primary colour (red, yellow, or blue): ").strip().lower()
 
-    # Uses the is_primary() helper function to determine if c1 and c2 are primary colours
+    # is_primary() determines if c1 and c2 are primary colours
     # Prints a helpful message if either colour is not a primary colour
     if not is_primary(c1) or not is_primary(c2):
         print("You must enter primary colours (red, yellow, blue).")
@@ -40,6 +40,4 @@ def is_primary(colour):
     """
     # Strips whitespace and converts string to lower case
     colour = colour.strip().lower()
-    if colour != "red" and colour != "yellow" and colour != "blue":
-        return False
-    return True
+    return colour == "red" or colour == "yellow" or colour == "blue"
