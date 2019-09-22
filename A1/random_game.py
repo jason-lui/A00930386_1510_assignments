@@ -64,6 +64,6 @@ def generate_move():
     else: # res == 2
         return "scissors"
 
-# Tests the main function
+# Calls the main function
 if __name__ == '__main__':
     rock_paper_scissors()

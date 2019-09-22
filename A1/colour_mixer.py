@@ -42,6 +42,6 @@ def is_primary(colour):
     colour = colour.strip().lower()
     return colour == "red" or colour == "yellow" or colour == "blue"
 
-# Tests the calls the main function
+# Calls the the main function
 if __name__ == '__main__':
     colour_mixer()
