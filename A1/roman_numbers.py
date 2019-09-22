@@ -4,7 +4,7 @@ def convert_to_roman_numeral(positive_int):
 
     Uses a subset of MDCLXVI. Represents 4 as IIII, 9 as VIIII, etc.
 
-    :param: positive_int, a positive integer
+    :param positive_int: a positive integer
     :precondition: positive_int must be positive and in [1, 10000]
     :postcondition: Converts positive_int into its Roman numeral
     :return: The Roman numeral as a string
