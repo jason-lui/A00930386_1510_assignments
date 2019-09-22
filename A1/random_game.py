@@ -36,4 +36,30 @@ def rock_paper_scissors():
     return
 
 
+def is_valid(rps):
+    """
+    Determines if a string is rock paper or scissors.
 
+    :param choice: a string
+    :precondition: choice must be a string
+    :return: Boolean
+    """
+    rps = rps.strip().lower()
+    return rps == "rock" or rps == "paper" or rps == "scissors"
+
+
+def generate_move():
+    """
+    Generates a move for rock paper scissors.
+
+    :postconditions: generates "rock", "paper" or "scissors"
+    :return: a string of "rock", "paper", or "scissors"
+    """
+    import random
+    res = random.randint(0, 2)
+    if res == 0:
+        return "rock"
+    elif res == 1:
+        return "paper"
+    else: # res == 2
+        return "scissors"
