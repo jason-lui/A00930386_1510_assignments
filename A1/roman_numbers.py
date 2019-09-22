@@ -18,7 +18,7 @@ def convert_to_roman_numeral(positive_int):
     """
     # Checks if positive_int is within [1, 10000]
     if not 1 <= positive_int <= 10000:
-        return None
+        return
     # res stores the result
     res = ""
 
