@@ -54,7 +54,7 @@ def decode(char):
         return "7"
     elif char in "tuv":
         return "8"
-    else: # char in "wxyz"
+    elif char in "wxyz":
         return "9"
 
 # Calls the main function
