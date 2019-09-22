@@ -1,4 +1,3 @@
-import random
 def rock_paper_scissors():
     """
     Plays a game of rock paper scissors.
@@ -56,6 +55,7 @@ def generate_move():
     :postconditions: generates "rock", "paper" or "scissors"
     :return: a string of "rock", "paper", or "scissors"
     """
+    import random
     res = random.randint(0, 2)
     if res == 0:
         return "rock"
