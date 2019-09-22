@@ -5,21 +5,15 @@ def colour_mixer():
     User inputs 2 unique primary colours.
     :return: None
     """
-    # User inputs 2 strings which are converted to lower case
+    # User inputs 2 strings which are stripped of whitespace and converted to lowercase
     c1 = input("Enter a primary colour (red, yellow, or blue): ").strip().lower()
     c2 = input("Enter a different primary colour (red, yellow, or blue): ").strip().lower()
 
+    # Uses the is_primary() helper function to determine if c1 and c2 are primary colours
     # Prints a helpful message if either colour is not a primary colour
-    if c1 != "red":
-        if c1 != "yellow":
-            if c1 != "blue":
-                print("You must enter primary colours (red, yellow, blue).")
-                return
-    if c2 != "red":
-        if c2 != "yellow":
-            if c2 != "blue":
-                print("You must enter primary colours (red, yellow, blue).")
-                return
+    if not is_primary(c1) or not is_primary(c2):
+        print("You must enter primary colours (red, yellow, blue).")
+        return
 
     # Prints a helpful message if c1 and c2 are the same
     if c1 == c2:
@@ -34,3 +28,18 @@ def colour_mixer():
     else: # (c1 == "yellow" and c2 == "blue") or (c1 == "blue" and c2 == "yellow")
         print("Green")
     return
+
+def is_primary(colour):
+    """
+    Determines if a colour is a primary colour.
+
+    :param colour: a string
+    :precondition: colour must be a string of "red", "yellow" or "blue" (case insensitive)
+    :postcondition: determines if colour is a primary colour
+    :return: Boolean
+    """
+    # Strips whitespace and converts string to lower case
+    colour = colour.strip().lower()
+    if colour != "red" and colour != "yellow" and colour != "blue":
+        return False
+    return True
