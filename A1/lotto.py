@@ -36,3 +36,7 @@ def number_generator():
     # Prints res in ascending order in a single line
     print(res[0], res[1], res[2], res[3], res[4], res[5])
     return
+
+
+if __name__ == '__main__':
+    number_generator()

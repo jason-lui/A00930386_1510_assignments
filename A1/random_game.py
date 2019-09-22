@@ -63,3 +63,7 @@ def generate_move():
         return "paper"
     else: # res == 2
         return "scissors"
+
+
+if __name__ == '__main__':
+    rock_paper_scissors()

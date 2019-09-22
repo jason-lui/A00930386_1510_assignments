@@ -41,3 +41,7 @@ def is_primary(colour):
     # Strips whitespace and converts string to lower case
     colour = colour.strip().lower()
     return colour == "red" or colour == "yellow" or colour == "blue"
+
+
+if __name__ == '__main__':
+    colour_mixer()
