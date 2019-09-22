@@ -2,7 +2,7 @@ def time_calculator(seconds):
     """
     Converts the number of seconds into days, hours, minutes, seconds.
 
-    :param seconds: a positive integer
+    :param seconds: an integer
     :precondition: seconds must be a positive integer
     :postcondition: the days, hours, minutes, seconds will be printed
     :return: None
