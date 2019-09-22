@@ -16,10 +16,13 @@ def convert_to_roman_numeral(positive_int):
     >>> convert_to_roman_numeral(10000)
     MMMMMMMMM
     """
+    # Checks if positive_int is within [1, 10000]
     if not 1 <= positive_int <= 10000:
         return None
+    # res stores the result
     res = ""
 
+    # Start building the result starting from the largest denomination
     res = res + "M" * (positive_int // 1000)
     positive_int = positive_int % 1000
     res = res + "D" * (positive_int // 500)
