@@ -10,15 +10,15 @@ def convert_to_roman_numeral(positive_int):
     :return: The Roman numeral as a string
 
     >>> convert_to_roman_numeral(0)
-    None
+
     >>> convert_to_roman_numeral(9)
-    VIIII
+    'VIIII'
     >>> convert_to_roman_numeral(10000)
-    MMMMMMMMM
+    'MMMMMMMMMM'
     """
     # Checks if positive_int is within [1, 10000]
     if not 1 <= positive_int <= 10000:
-        return
+        return None
     # res stores the result
     res = ""
 
@@ -38,3 +38,8 @@ def convert_to_roman_numeral(positive_int):
     res += "I" * positive_int
 
     return res
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
