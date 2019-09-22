@@ -37,6 +37,6 @@ def number_generator():
     print(res[0], res[1], res[2], res[3], res[4], res[5])
     return
 
-
+# Tests the main function
 if __name__ == '__main__':
     number_generator()
