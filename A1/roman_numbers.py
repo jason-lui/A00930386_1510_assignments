@@ -23,18 +23,18 @@ def convert_to_roman_numeral(positive_int):
     res = ""
 
     # Start building the result starting from the largest denomination
-    res = res + "M" * (positive_int // 1000)
-    positive_int = positive_int % 1000
-    res = res + "D" * (positive_int // 500)
-    positive_int = positive_int % 500
-    res = res + "C" * (positive_int // 100)
-    positive_int = positive_int % 100
-    res = res + "L" * (positive_int // 50)
-    positive_int = positive_int % 50
-    res = res + "X" * (positive_int // 10)
-    positive_int = positive_int % 10
-    res = res + "V" * (positive_int // 5)
-    positive_int = positive_int % 5
-    res = res + "I" * positive_int
+    res += "M" * (positive_int // 1000)
+    positive_int %= 1000
+    res += "D" * (positive_int // 500)
+    positive_int %= 500
+    res += "C" * (positive_int // 100)
+    positive_int %= 100
+    res += "L" * (positive_int // 50)
+    positive_int %= 50
+    res += "X" * (positive_int // 10)
+    positive_int %= 10
+    res += "V" * (positive_int // 5)
+    positive_int %= 5
+    res += "I" * positive_int
 
     return res
