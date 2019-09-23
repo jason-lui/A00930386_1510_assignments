@@ -8,18 +8,9 @@ def number_translator():
     phone = input("Enter a 10-character phone number to be decoded (XXX-XXX-XXXX): ").strip().lower()
     res = ""
 
-    res += decode(phone[0])
-    res += decode(phone[1])
-    res += decode(phone[2])
-    res += decode(phone[3])
-    res += decode(phone[4])
-    res += decode(phone[5])
-    res += decode(phone[6])
-    res += decode(phone[7])
-    res += decode(phone[8])
-    res += decode(phone[9])
-    res += decode(phone[10])
-    res += decode(phone[11])
+    res = decode(phone[0]) + decode(phone[1]) + decode(phone[2]) + decode(phone[3]) + \
+          decode(phone[4]) + decode(phone[5]) + decode(phone[6]) + decode(phone[7]) + \
+          decode(phone[8]) + decode(phone[9]) + decode(phone[10]) + decode(phone[11])
 
     return res
 
@@ -36,7 +27,7 @@ def decode(char):
     char = char.strip().lower()
 
     # Retains hyphens and integers
-    if char == "-" or char.isnumeric():
+    if char == "-" or char in "1234567890":
         return char
 
     # char is converted to its associated integer
