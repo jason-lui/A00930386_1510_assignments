@@ -9,10 +9,28 @@ def convert_to_roman_numeral(positive_int):
     :postcondition: converts positive_int into its Roman numeral
     :return: the Roman numeral as a string
 
-    >>> convert_to_roman_numeral(0)
-
+    >>> convert_to_roman_numeral(4)
+    'IV'
     >>> convert_to_roman_numeral(9)
-    'VIIII'
+    'IX'
+    >>> convert_to_roman_numeral(39)
+    'XXXIX'
+    >>> convert_to_roman_numeral(49)
+    'XLIX'
+    >>> convert_to_roman_numeral(89)
+    'LXXXIX'
+    >>> convert_to_roman_numeral(99)
+    'XCIX'
+    >>> convert_to_roman_numeral(399)
+    'CCCXCIX'
+    >>> convert_to_roman_numeral(499)
+    'CDXCIX'
+    >>> convert_to_roman_numeral(899)
+    'DCCCXCIX'
+    >>> convert_to_roman_numeral(999)
+    'CMXCIX'
+    >>> convert_to_roman_numeral(9999)
+    'MMMMMMMMMCMXCIX'
     >>> convert_to_roman_numeral(10000)
     'MMMMMMMMMM'
     """
@@ -22,20 +40,44 @@ def convert_to_roman_numeral(positive_int):
     # res stores the result
     res = ""
 
-    # Start building the result starting from the largest denomination
+    # Start concatenating the result starting from the largest denomination
+    # Denominations of 1000s
     res += "M" * (positive_int // 1000)
     positive_int %= 1000
-    res += "D" * (positive_int // 500)
-    positive_int %= 500
-    res += "C" * (positive_int // 100)
-    positive_int %= 100
-    res += "L" * (positive_int // 50)
-    positive_int %= 50
-    res += "X" * (positive_int // 10)
-    positive_int %= 10
-    res += "V" * (positive_int // 5)
-    positive_int %= 5
-    res += "I" * positive_int
+
+    # Denominations of 100s
+    if positive_int // 100 == 4:
+        res += "CD"
+        positive_int %= 400
+    elif positive_int // 100 == 9:
+        res += "CM"
+        positive_int %= 900
+    else:
+        res += "D" * (positive_int // 500)
+        positive_int %= 500
+        res += "C" * (positive_int // 100)
+        positive_int %= 100
+
+    # Denominations of 10s
+    if positive_int // 10 == 4:
+        res += "XL"
+        positive_int %= 40
+    elif positive_int // 10 == 9:
+        res += "XC"
+        positive_int %= 90
+    else:
+        res += "L" * (positive_int // 50)
+        positive_int %= 50
+        res += "X" * (positive_int // 10)
+        positive_int %= 10
+
+    # Single digits
+    if positive_int == 4:
+        res += "IV"
+    elif positive_int == 9:
+        res += "IX"
+    else:
+        res += "I" * positive_int
 
     return res
 
