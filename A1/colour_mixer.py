@@ -27,7 +27,7 @@ def colour_mixer():
         print("Orange")
     else: # (c1 == "yellow" and c2 == "blue") or (c1 == "blue" and c2 == "yellow")
         print("Green")
-    return
+
 
 def is_primary(colour):
     """
@@ -42,6 +42,15 @@ def is_primary(colour):
     colour = colour.strip().lower()
     return colour == "red" or colour == "yellow" or colour == "blue"
 
+
+def main():
+    """
+    Drives the function.
+    """
+    colour_mixer()
+
+
 # Calls the the main function
 if __name__ == '__main__':
-    colour_mixer()
+    main()
+
