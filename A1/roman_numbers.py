@@ -37,9 +37,6 @@ def convert_to_roman_numeral(positive_int):
     >>> convert_to_roman_numeral(10000)
     'MMMMMMMMMM'
     """
-    # Checks if positive_int is within [1, 10000]
-    if not 1 <= positive_int <= 10000:
-        return None
     # res stores the result
     res = ""
 
