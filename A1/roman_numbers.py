@@ -3,9 +3,9 @@ import doctest
 
 def convert_to_roman_numeral(positive_int):
     """
-    Converts a number to its Roman numerals.
+    Convert a number to its Roman numerals.
 
-    Uses a subset of MDCLXVI. Represents 4 as IIII, 9 as VIIII, etc.
+    Uses a subset of MDCLXVI. Represents 4 as IV, 9 as IX, etc.
 
     :param positive_int: a positive integer
     :precondition: positive_int must be positive and in [1, 10000]
@@ -42,44 +42,54 @@ def convert_to_roman_numeral(positive_int):
 
     # Start concatenating the result starting from the largest denomination
     # Denominations of 1000s
+    # Abstract function not used because no denominations higher than 1000
     res += "M" * (positive_int // 1000)
-    positive_int %= 1000
 
     # Denominations of 100s
-    if positive_int // 100 == 4:
-        res += "CD"
-        positive_int %= 400
-    elif positive_int // 100 == 9:
-        res += "CM"
-        positive_int %= 900
-    else:
-        res += "D" * (positive_int // 500)
-        positive_int %= 500
-        res += "C" * (positive_int // 100)
-        positive_int %= 100
+    res += roman_denomination(positive_int, 100, "C", "D", "M")
 
     # Denominations of 10s
-    if positive_int // 10 == 4:
-        res += "XL"
-        positive_int %= 40
-    elif positive_int // 10 == 9:
-        res += "XC"
-        positive_int %= 90
-    else:
-        res += "L" * (positive_int // 50)
-        positive_int %= 50
-        res += "X" * (positive_int // 10)
-        positive_int %= 10
+    res += roman_denomination(positive_int, 10, "X", "L", "C")
 
     # Single digits
-    if positive_int == 4:
-        res += "IV"
-    elif positive_int == 9:
-        res += "IX"
-    else:
-        res += "I" * positive_int
+    res += roman_denomination(positive_int, 1, "I", "V", "X")
 
     return res
+
+
+def roman_denomination(num, divisor, ones, fives, tens):
+    """
+    Generate Roman numeral representation for different orders of magnitude.
+
+    :param num: an integer
+    :param divisor: an integer
+    :param ones: a string
+    :param fives: a string
+    :param tens: a string
+    :precondition: num must be an integer
+    :precondition: divisor must be an integer 10 ** n
+    :precondition: ones must be a string representing divisor in Roman numerals
+    :precondition: fives must be a string representing divisor * 5 in Roman numerals
+    :precondition: tens must be a string representing divisor * 10 in Roman numerals
+    :postcondition: produces the Roman numeral representation of a specified order of magnitude
+    :return: the Roman numerals for an order of magnitude
+    """
+    num %= (divisor * 10)
+    if ones == 1:
+        return num * ones
+    result = ""
+    if num // divisor == 4:
+        result += ones + fives
+        num %= divisor
+    elif num // divisor == 9:
+        result += ones + tens
+        num %= divisor
+    else:
+        result += fives * (num // (divisor * 5))
+        num %= (divisor * 5)
+        result += ones * (num// divisor)
+        num %= divisor
+    return result
 
 
 # Imports the doctest module to use the tests in the docstring
