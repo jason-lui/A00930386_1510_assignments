@@ -3,6 +3,7 @@ def colour_mixer():
     Combine 2 primary colours into a secondary colour.
 
     User inputs 2 unique primary colours.
+    :postcondition: prints the resulting secondary colour if inputs are valid
     """
     # User inputs 2 strings which are stripped of whitespace and converted to lowercase
     c1 = input("Enter a primary colour (red, yellow, or blue): ").strip().lower()
