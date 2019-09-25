@@ -14,10 +14,12 @@ def convert_to_roman_numeral(positive_int):
 
     >>> convert_to_roman_numeral(1)
     'I'
-    >>> convert_to_roman_numeral(4444)
-    'MMMMCDXLIV'
-    >>> convert_to_roman_numeral(9999)
-    'MMMMMMMMMCMXCIX'
+    >>> convert_to_roman_numeral(28)
+    'XXVIII'
+    >>> convert_to_roman_numeral(338)
+    'CCCXXXVIII'
+    >>> convert_to_roman_numeral(4499)
+    'MMMMCDXCIX'
     >>> convert_to_roman_numeral(10000)
     'MMMMMMMMMM'
     """
@@ -58,9 +60,10 @@ def roman_denomination(num, divisor, ones, fives, tens):
     :postcondition: produces the Roman numeral representation of a specified order of magnitude
     :return: the Roman numerals for an order of magnitude
     """
+    # Strip the number to the desired order of magnitude
     num %= (divisor * 10)
-    if ones == 1:
-        return num * ones
+
+    # Treats the case one ones differentl
     result = ""
     if num // divisor == 4:
         result += ones + fives
