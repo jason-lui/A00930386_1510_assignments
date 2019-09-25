@@ -1,6 +1,6 @@
 def compound_interest(principal, rate, times_compounded, years):
     """
-    Calculates the balance after compounding interest over time.
+    Calculate the balance after compounding interest over time.
 
     The rate is given as a decimal (i.e. 1.13 represents 13%). A is rounded to 2 decimal places.
     :param principal: a float
