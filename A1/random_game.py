@@ -9,7 +9,7 @@ def rock_paper_scissors():
     choice = input("Enter rock paper or scissors: ").strip().lower()
 
     # is_valid() determines if choice is a valid move
-    if not is_valid(choice):
+    if not is_valid_rps(choice):
         print("You did not input a valid choice. Enter rock paper or scissors.")
         return
 
@@ -37,7 +37,7 @@ def rock_paper_scissors():
     return
 
 
-def is_valid(rps):
+def is_valid_rps(rps):
     """
     Determine if a string is rock paper or scissors.
 
@@ -69,3 +69,15 @@ def generate_move():
 # Call the main function
 if __name__ == '__main__':
     rock_paper_scissors()
+
+
+# Component(s) of computational thinking
+
+# Decomposition
+# random_game() uses decomposition by calling 2 helper functions. is_valid_rps() checks
+# if a string is a valid move in the game of rock paper scissors. generate_move() provides
+# a random integer and returns an RPS move based on the result.
+
+# Algorithms and Automation
+# random_game() uses the randint() function from the random module to generate random numbers.
+# The random numbers are used by generate_move() to generate a valid RPS move by the computer.
