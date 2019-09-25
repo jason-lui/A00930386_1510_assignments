@@ -1,7 +1,8 @@
 def number_translator():
     """
-    Decode a phone number that the user inputs.
-
+    Decode an alphanumeric phone number into numbers.
+    .
+    The user inputs a phone number in the form of XXX-XXX-XXXX.
     :postcondition: the user inputted phone number will be represented as digits
     :return: a string of the phone number containing only digits
     """
