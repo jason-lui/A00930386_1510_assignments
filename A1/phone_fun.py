@@ -14,6 +14,7 @@ def number_translator():
 
     return res
 
+
 def decode(char):
     """
     Return the integer equivalent of an alphabetic number on a standard phone.
@@ -50,6 +51,7 @@ def decode(char):
 
     # Return char back if not alphanumeric or "-"
     return char
+
 
 # Call the main function
 if __name__ == '__main__':
