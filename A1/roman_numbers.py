@@ -12,26 +12,10 @@ def convert_to_roman_numeral(positive_int):
     :postcondition: converts positive_int into its Roman numeral
     :return: the Roman numeral as a string
 
-    >>> convert_to_roman_numeral(4)
-    'IV'
-    >>> convert_to_roman_numeral(9)
-    'IX'
-    >>> convert_to_roman_numeral(39)
-    'XXXIX'
-    >>> convert_to_roman_numeral(49)
-    'XLIX'
-    >>> convert_to_roman_numeral(89)
-    'LXXXIX'
-    >>> convert_to_roman_numeral(99)
-    'XCIX'
-    >>> convert_to_roman_numeral(399)
-    'CCCXCIX'
-    >>> convert_to_roman_numeral(499)
-    'CDXCIX'
-    >>> convert_to_roman_numeral(899)
-    'DCCCXCIX'
-    >>> convert_to_roman_numeral(999)
-    'CMXCIX'
+    >>> convert_to_roman_numeral(1)
+    'I'
+    >>> convert_to_roman_numeral(4444)
+    'MMMMCDXLIV'
     >>> convert_to_roman_numeral(9999)
     'MMMMMMMMMCMXCIX'
     >>> convert_to_roman_numeral(10000)
