@@ -15,6 +15,10 @@ def time_calculator(seconds):
     >>> time_calculator(100000)
     1 3 46 40
     """
+    # Checks if seconds is an integer
+    if seconds != int(seconds):
+        return
+
     # List of the desired time frames and their values in seconds
     days_sec = 86400
     hours_sec = 3600
