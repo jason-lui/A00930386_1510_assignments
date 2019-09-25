@@ -4,7 +4,7 @@ def compound_interest(principal, rate, times_compounded, years):
 
     The rate is given as a decimal (i.e. 1.13 represents 13%). A is rounded to 2 decimal places.
     :param principal: a float
-    :param annual_rate: a float
+    :param rate: a float
     :param times_compounded: an integer
     :param years: an integer
     :precondition: principal must be a positive float
