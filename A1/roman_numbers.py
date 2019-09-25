@@ -3,7 +3,7 @@ import doctest
 
 def convert_to_roman_numeral(positive_int):
     """
-    Convert a number to its Roman numerals.
+    Convert a number to Roman numerals.
 
     Uses a subset of MDCLXVI.
     Represents 4 as IV, 9 as IX, etc.
