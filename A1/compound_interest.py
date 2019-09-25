@@ -32,7 +32,7 @@ def compound_interest(principal, rate, times_compounded, years):
     """
     # Return None if any of the parameters are less than 0
     if principal < 0 or rate < 0 or times_compounded < 0 or years < 0:
-        return None
+        return
 
     # Return principal if rate, times_compounded or years = 0
     if rate == 0 or times_compounded == 0 or years == 0:
