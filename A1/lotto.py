@@ -22,6 +22,7 @@ def number_generator():
 if __name__ == '__main__':
     number_generator()
 
+
 # Component(s) of computational thinking
 
 # Pattern Matching and Data Representation
