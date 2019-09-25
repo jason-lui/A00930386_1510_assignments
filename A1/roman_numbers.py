@@ -66,8 +66,10 @@ def roman_denomination(num, divisor, ones, fives, tens):
     # Strip the number to the desired order of magnitude
     num %= (divisor * 10)
 
-    # Treats the case one ones differentl
+    # Concatenate string in result
     result = ""
+
+    # Use exceptions for 4 and 9 cases
     if num // divisor == 4:
         result += ones + fives
         num %= divisor
@@ -79,9 +81,10 @@ def roman_denomination(num, divisor, ones, fives, tens):
         num %= (divisor * 5)
         result += ones * (num// divisor)
         num %= divisor
+
     return result
 
 
-# Imports the doctest module to use the tests in the docstring
+# Import the doctest module to use the tests in the docstring
 if __name__ == "__main__":
     doctest.testmod()
