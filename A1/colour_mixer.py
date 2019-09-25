@@ -17,7 +17,7 @@ def colour_mixer():
 
     # Print a helpful message if c1 and c2 are the same
     if c1 == c2:
-        print("You must enter 2 unique primary colours.")
+        print("You must enter 2 unique colours.")
         return
 
     # Print the appropriate secondary colour combination
