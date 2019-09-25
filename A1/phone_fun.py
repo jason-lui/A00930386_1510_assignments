@@ -48,6 +48,9 @@ def decode(char):
     elif char in "wxyz":
         return "9"
 
+    # Return char back if not alphanumeric or "-"
+    return char
+
 # Call the main function
 if __name__ == '__main__':
     print(number_translator())
