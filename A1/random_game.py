@@ -38,7 +38,7 @@ def rock_paper_scissors():
 
 def is_valid(rps):
     """
-    Determines if a string is rock paper or scissors.
+    Determine if a string is rock paper or scissors.
 
     :param choice: a string
     :precondition: choice must be a string
@@ -50,7 +50,7 @@ def is_valid(rps):
 
 def generate_move():
     """
-    Generates a move for rock paper scissors.
+    Generate a move for rock paper scissors.
 
     :postconditions: generates "rock", "paper" or "scissors"
     :return: a string of "rock", "paper", or "scissors"
