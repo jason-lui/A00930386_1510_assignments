@@ -1,6 +1,6 @@
 def number_generator():
     """
-    Generate and prints 6 unique numbers.
+    Generate and print 6 unique numbers.
 
     Numbers range from [1, 49].
     :postconditions: generates 6 unique numbers in [1, 49]
