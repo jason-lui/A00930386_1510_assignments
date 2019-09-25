@@ -66,9 +66,16 @@ def generate_move():
         return "scissors"
 
 
+def main():
+    """
+    Drive the main function
+    """
+    rock_paper_scissors()
+
+
 # Call the main function
 if __name__ == '__main__':
-    rock_paper_scissors()
+    main()
 
 
 # Component(s) of computational thinking
