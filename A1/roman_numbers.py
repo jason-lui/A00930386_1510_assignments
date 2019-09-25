@@ -9,7 +9,7 @@ def convert_to_roman_numeral(positive_int):
     Represents 4 as IV, 9 as IX, etc.
     :param positive_int: a positive integer
     :precondition: positive_int must be positive and in [1, 10000]
-    :postcondition: converts positive_int into its Roman numeral
+    :postcondition: converts positive_int into Roman numerals
     :return: the Roman numeral as a string
 
     >>> convert_to_roman_numeral(1)
