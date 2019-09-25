@@ -7,6 +7,7 @@ def rock_paper_scissors():
     """
     # User inputs a string which is stripped and converted to lowercase
     choice = input("Enter rock paper or scissors: ").strip().lower()
+
     # is_valid() determines if choice is a valid move
     if not is_valid(choice):
         print("You did not input a valid choice. Enter rock paper or scissors.")
@@ -63,6 +64,7 @@ def generate_move():
         return "paper"
     else: # res == 2
         return "scissors"
+
 
 # Call the main function
 if __name__ == '__main__':
