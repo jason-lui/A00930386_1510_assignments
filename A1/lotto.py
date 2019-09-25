@@ -18,9 +18,16 @@ def number_generator():
     return
 
 
+def main():
+    """
+    Drive the main function.
+    """
+    number_generator()
+
+
 # Call the main function
 if __name__ == '__main__':
-    number_generator()
+    main()
 
 
 # Component(s) of computational thinking
