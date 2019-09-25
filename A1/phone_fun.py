@@ -1,6 +1,3 @@
-from typing import Any, Union
-
-
 def number_translator():
     """
     Decode an alphanumeric phone number into numbers.

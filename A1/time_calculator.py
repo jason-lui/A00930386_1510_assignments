@@ -1,6 +1,3 @@
-import doctest
-
-
 def time_calculator(seconds):
     """
     Convert the number of seconds into days, hours, minutes, seconds.
@@ -49,6 +46,7 @@ def time_converter(seconds, time_frame):
 
 # Import the doctest module to use the tests in the docstring
 if __name__ == "__main__":
+    import doctest
     doctest.testmod()
 
 

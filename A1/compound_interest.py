@@ -1,6 +1,3 @@
-import doctest
-
-
 def compound_interest(principal, rate, times_compounded, years):
     """
     Calculate the balance after compounding interest over time.
@@ -47,6 +44,7 @@ def compound_interest(principal, rate, times_compounded, years):
 
 # Import the doctest module to use the tests in the docstring
 if __name__ == "__main__":
+    import doctest
     doctest.testmod()
 
 # Component(s) of computational thinking
