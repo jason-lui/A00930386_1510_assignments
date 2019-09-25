@@ -50,3 +50,11 @@ def time_converter(seconds, time_frame):
 # Import the doctest module to use the tests in the docstring
 if __name__ == "__main__":
     doctest.testmod()
+
+
+# Component(s) of computational thinking
+
+# Decomposition
+# time_calculator() uses the helper function time_converter() to calculate the
+# number of days/hours/minutes given a number of seconds. The helper function
+# can be implemented into any program that requires a conversion of time if given seconds.
