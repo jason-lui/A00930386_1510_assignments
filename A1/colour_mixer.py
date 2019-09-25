@@ -12,7 +12,7 @@ def colour_mixer():
     # is_primary() determines if c1 and c2 are primary colours
     # Print a helpful message if either colour is not a primary colour
     if not is_primary(c1) or not is_primary(c2):
-        print("You must enter primary colours (red, yellow, blue).")
+        print("Both colours must enter primary colours (red, yellow, blue).")
         return
 
     # Print a helpful message if c1 and c2 are the same
