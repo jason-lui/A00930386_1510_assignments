@@ -29,7 +29,7 @@ def convert_to_roman_numeral(positive_int):
     # res stores the result
     res = ""
 
-    # Start concatenating the result starting from the largest denomination
+    # Start concatenating the result starting from the order of magnitude
     # Denominations of 1000s
     # Abstract function not used because no denominations higher than 1000
     res += "M" * (positive_int // 1000)
@@ -56,7 +56,7 @@ def roman_denomination(num, divisor, ones, fives, tens):
     :param fives: a string
     :param tens: a string
     :precondition: num must be an integer
-    :precondition: divisor must be an integer 10 ** n
+    :precondition: divisor must be an integer that is a power of 10 (1, 10, 100...)
     :precondition: ones must be a string representing divisor in Roman numerals
     :precondition: fives must be a string representing divisor * 5 in Roman numerals
     :precondition: tens must be a string representing divisor * 10 in Roman numerals
@@ -88,3 +88,14 @@ def roman_denomination(num, divisor, ones, fives, tens):
 # Import the doctest module to use the tests in the docstring
 if __name__ == "__main__":
     doctest.testmod()
+
+# Component(s) of computational thinking
+
+# Abstraction and Generalization
+# convert_to_roman_numeral() uses the roman_denomination() abstract function to
+# convert a number into Roman numerals for a specified order of magnitude.
+# I recognized that the process for converting and 1s, 10s, 100s were the same.
+# Each level represents the 4 and 9 cases in a similar way. The 1000s didn't use
+# the abstract function because we don't use denominations higher than that.
+# If the subset of numbers and the range of inputs were larger, the abstract function
+# can accept larger denominations to work with larger numbers.
