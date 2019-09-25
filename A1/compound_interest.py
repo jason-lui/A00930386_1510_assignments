@@ -40,6 +40,7 @@ def compound_interest(principal, rate, times_compounded, years):
 
     # Calculate A, the balance after the elapsed time
     A = principal * (1 + rate / times_compounded) ** (rate * years)
+
     # Return A rounded to 2 decimal places
     return float("{:.2f}".format(A))
 
@@ -47,3 +48,10 @@ def compound_interest(principal, rate, times_compounded, years):
 # Import the doctest module to use the tests in the docstring
 if __name__ == "__main__":
     doctest.testmod()
+
+# Component(s) of computational thinking
+
+# Pattern Matching and Date Representation
+# I used a boolean statement to return the principal if rate, times_compounded or years
+# were equal to 0. I recognized that the output will not change if any of these values were 0.
+# This information allowed me to create a shortcut for these cases.
