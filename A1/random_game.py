@@ -3,6 +3,7 @@ def rock_paper_scissors():
     Play a game of rock paper scissors.
 
     User inputs rock paper scissors and battles against a randomly generated move.
+    :postcondition: generates a win/tie/loss against the user's choice
     """
     # User inputs a string which is stripped and converted to lowercase
     choice = input("Enter rock paper or scissors: ").strip().lower()
