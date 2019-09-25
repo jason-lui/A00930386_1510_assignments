@@ -18,6 +18,6 @@ def number_generator():
     return
 
 
-# Calls the main function
+# Call the main function
 if __name__ == '__main__':
     number_generator()
