@@ -20,7 +20,7 @@ def number_generator():
 
 def main():
     """
-    Drive the main function.
+    Drive the program.
     """
     number_generator()
 

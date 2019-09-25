@@ -54,10 +54,16 @@ def decode(char):
     return char
 
 
-# Call the main function
-if __name__ == '__main__':
+def main():
+    """
+    Drive the program.
+    """
     print(number_translator())
 
+
+# Call the main function
+if __name__ == '__main__':
+    main()
 
 # Component(s) of computational thinking
 

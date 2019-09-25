@@ -68,7 +68,7 @@ def generate_move():
 
 def main():
     """
-    Drive the main function
+    Drive the program.
     """
     rock_paper_scissors()
 
