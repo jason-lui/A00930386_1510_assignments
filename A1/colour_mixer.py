@@ -45,7 +45,7 @@ def is_primary(colour):
 
 def main():
     """
-    Drive the function.
+    Drive the main function.
     """
     colour_mixer()
 
