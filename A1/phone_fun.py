@@ -16,7 +16,7 @@ def number_translator():
 
 def decode(char):
     """
-    Returns the integer equivalent of an alphabetic number on a standard phone.
+    Return the integer equivalent of an alphabetic number on a standard phone.
 
     :param char: a string
     :precondition: char must be a string of a single alphanumeric character
@@ -26,7 +26,7 @@ def decode(char):
     # char is stripped of its whitespace and made lowercase
     char = char.strip().lower()
 
-    # Retains hyphens and integers
+    # Retain hyphens and integers
     if char == "-" or char in "1234567890":
         return char
 
@@ -48,6 +48,6 @@ def decode(char):
     elif char in "wxyz":
         return "9"
 
-# Calls the main function
+# Call the main function
 if __name__ == '__main__':
     print(number_translator())

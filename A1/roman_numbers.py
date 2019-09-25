@@ -6,7 +6,6 @@ def convert_to_roman_numeral(positive_int):
     Convert a number to its Roman numerals.
 
     Uses a subset of MDCLXVI. Represents 4 as IV, 9 as IX, etc.
-
     :param positive_int: a positive integer
     :precondition: positive_int must be positive and in [1, 10000]
     :postcondition: converts positive_int into its Roman numeral
@@ -23,7 +22,7 @@ def convert_to_roman_numeral(positive_int):
     >>> convert_to_roman_numeral(10000)
     'MMMMMMMMMM'
     """
-    # Checks if positive_int is an integer
+    # Check if positive_int is an integer
     if positive_int != int(positive_int):
         return
 

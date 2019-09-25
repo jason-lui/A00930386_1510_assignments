@@ -1,3 +1,6 @@
+import doctest
+
+
 def compound_interest(principal, rate, times_compounded, years):
     """
     Calculate the balance after compounding interest over time.
@@ -27,21 +30,20 @@ def compound_interest(principal, rate, times_compounded, years):
     >>> compound_interest(10, 1.13, 3, 5)
     60.87
     """
-    # Returns None if any of the parameters are less than 0
+    # Return None if any of the parameters are less than 0
     if principal < 0 or rate < 0 or times_compounded < 0 or years < 0:
         return None
 
-    # Returns principal if rate, times_compounded or years = 0
+    # Return principal if rate, times_compounded or years = 0
     if rate == 0 or times_compounded == 0 or years == 0:
         return principal
 
-    # Calculates A, the balance after the elapsed time
+    # Calculate A, the balance after the elapsed time
     A = principal * (1 + rate / times_compounded) ** (rate * years)
-    # Returns A rounded to 2 decimal places
+    # Return A rounded to 2 decimal places
     return float("{:.2f}".format(A))
 
 
-# Imports the doctest module to use the tests in the docstring
+# Import the doctest module to use the tests in the docstring
 if __name__ == "__main__":
-    import doctest
     doctest.testmod()

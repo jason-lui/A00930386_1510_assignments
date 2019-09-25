@@ -14,7 +14,7 @@ def time_calculator(seconds):
     >>> time_calculator(100000)
     1 3 46 40
     """
-    # Checks if seconds is an integer
+    # Check if seconds is an integer
     if seconds != int(seconds):
         return
 
@@ -23,7 +23,7 @@ def time_calculator(seconds):
     hours_sec = 3600
     minutes_sec = 60
 
-    # Separates desired time frames into variables
+    # Separate desired time frames into variables
     days = seconds // days_sec
     seconds %= days_sec
     hours = seconds // hours_sec
@@ -35,6 +35,6 @@ def time_calculator(seconds):
     return
 
 
-# Imports the doctest module to use the tests in the docstring
+# Import the doctest module to use the tests in the docstring
 if __name__ == "__main__":
     doctest.testmod()

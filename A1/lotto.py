@@ -7,13 +7,13 @@ def number_generator():
     """
     import random
 
-    # Generates a sample of 6 numbers from [1, 49]
+    # Generate a sample of 6 numbers from [1, 49]
     res = random.sample(list(range(50)), 6)
 
-    # Sorts res in ascending order
+    # Sort res in ascending order
     res.sort()
 
-    # Prints res in ascending order in a single line
+    # Print res in ascending order in a single line
     print(res[0], res[1], res[2], res[3], res[4], res[5])
     return
 
