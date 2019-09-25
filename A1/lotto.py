@@ -21,3 +21,13 @@ def number_generator():
 # Call the main function
 if __name__ == '__main__':
     number_generator()
+
+# Component(s) of computational thinking
+
+# Pattern Matching and Data Representation
+# I chose to represent the randomly generated numbers in a list because the sort() method
+# can organize the list in ascending order.
+
+# Algorithms and Automation
+# number_generator() uses the randint() function from the random module to generate random numbers.
+# The sort() method is also applied to format the list as required.
