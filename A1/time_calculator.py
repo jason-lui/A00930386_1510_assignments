@@ -19,20 +19,32 @@ def time_calculator(seconds):
         return
 
     # List of the desired time frames and their values in seconds
-    days_sec = 86400
-    hours_sec = 3600
-    minutes_sec = 60
+    seconds_per_day = 86400
+    seconds_per_hour = 3600
+    seconds_per_minute = 60
 
     # Separate desired time frames into variables
-    days = seconds // days_sec
-    seconds %= days_sec
-    hours = seconds // hours_sec
-    seconds %= hours_sec
-    minutes = seconds // minutes_sec
-    seconds %= minutes_sec
+    days = time_converter(seconds, seconds_per_day)
+    seconds %= seconds_per_day
+    hours = time_converter(seconds, seconds_per_hour)
+    seconds %= seconds_per_hour
+    minutes = time_converter(seconds, seconds_per_minute)
+    seconds %= seconds_per_minute
 
     print(days, hours, minutes, seconds)
     return
+
+
+def time_converter(seconds, time_frame):
+    """
+    Convert seconds to the specified time frame.
+
+    :param time_frame: an integer
+    :precondition: time_frame must be an integer
+    :postcondition: the returned amount of time is an integer
+    :return: the seconds divided by the time_frame as an integer
+    """
+    return seconds // time_frame
 
 
 # Import the doctest module to use the tests in the docstring
