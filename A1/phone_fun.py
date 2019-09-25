@@ -1,3 +1,6 @@
+from typing import Any, Union
+
+
 def number_translator():
     """
     Decode an alphanumeric phone number into numbers.
@@ -7,13 +10,10 @@ def number_translator():
     :return: a string of the phone number containing only digits
     """
     phone = input("Enter a 10-character phone number to be decoded (XXX-XXX-XXXX): ").strip().lower()
-    res = ""
 
-    res = decode(phone[0]) + decode(phone[1]) + decode(phone[2]) + decode(phone[3]) + \
-          decode(phone[4]) + decode(phone[5]) + decode(phone[6]) + decode(phone[7]) + \
-          decode(phone[8]) + decode(phone[9]) + decode(phone[10]) + decode(phone[11])
-
-    return res
+    return decode(phone[0]) + decode(phone[1]) + decode(phone[2]) + decode(phone[3]) + \
+           decode(phone[4]) + decode(phone[5]) + decode(phone[6]) + decode(phone[7]) + \
+           decode(phone[8]) + decode(phone[9]) + decode(phone[10]) + decode(phone[11])
 
 
 def decode(char):
