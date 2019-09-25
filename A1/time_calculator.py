@@ -8,7 +8,6 @@ def time_calculator(seconds):
     :param seconds: an integer
     :precondition: seconds must be a positive integer
     :postcondition: the days, hours, minutes, seconds will be printed
-    :return: None
 
     >>> time_calculator(0)
     0 0 0 0
