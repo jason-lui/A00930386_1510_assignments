@@ -56,3 +56,10 @@ def decode(char):
 # Call the main function
 if __name__ == '__main__':
     print(number_translator())
+
+
+# Component(s) of computational thinking
+
+# Decomposition
+# The characters of the phone number is passed to the decode() helper function.
+# The corresponding alphabetic number is returned for number_translator().
