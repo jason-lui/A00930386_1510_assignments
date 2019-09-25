@@ -3,31 +3,30 @@ import doctest
 
 def time_calculator(seconds):
     """
-    Converts the number of seconds into days, hours, minutes, seconds.
+    Convert the number of seconds into days, hours, minutes, seconds.
 
     :param seconds: an integer
     :precondition: seconds must be a positive integer
     :postcondition: the days, hours, minutes, seconds will be printed
     :return: None
 
-    >>> time_calculator(-1)
-
     >>> time_calculator(0)
     0 0 0 0
     >>> time_calculator(100000)
     1 3 46 40
     """
-    # Returns None if seconds is less than 0
-    if seconds < 0:
-        return None
+    # List of the desired time frames and their values in seconds
+    days_sec = 86400
+    hours_sec = 3600
+    minutes_sec = 60
 
-    # Separates days, hours, minutes and seconds
-    days = seconds // 86400
-    seconds %= 86400
-    hours = seconds // 3600
-    seconds %= 3600
-    minutes = seconds // 60
-    seconds %= 60
+    # Separates desired time frames into variables
+    days = seconds // days_sec
+    seconds %= days_sec
+    hours = seconds // hours_sec
+    seconds %= hours_sec
+    minutes = seconds // minutes_sec
+    seconds %= minutes_sec
 
     print(days, hours, minutes, seconds)
     return

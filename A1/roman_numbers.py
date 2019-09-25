@@ -23,6 +23,9 @@ def convert_to_roman_numeral(positive_int):
     >>> convert_to_roman_numeral(10000)
     'MMMMMMMMMM'
     """
+    if positive_int != int(positive_int):
+        return
+
     # res stores the result
     res = ""
 
