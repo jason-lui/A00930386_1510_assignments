@@ -2,7 +2,7 @@ def convert_to_roman_numeral(positive_int):
     """
     Convert a number to Roman numerals.
 
-    Uses a subset of MDCLXVI.
+    Uses a subset of M, D, C, L, X, V, I.
     Represents 4 as IV, 9 as IX, etc.
     :param positive_int: a positive integer
     :precondition: positive_int must be positive and in [1, 10000]
