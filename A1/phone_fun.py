@@ -18,7 +18,7 @@ def number_translator():
 
 def decode(char):
     """
-    Return the integer equivalent of an alphabetic number on a standard phone.
+    Return the integer equivalent of a letter on a standard phone.
 
     :param char: a string
     :precondition: char must be a string of a single alphanumeric character
