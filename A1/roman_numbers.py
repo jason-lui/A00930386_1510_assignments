@@ -1,3 +1,6 @@
+import doctest
+
+
 def convert_to_roman_numeral(positive_int):
     """
     Convert a number to Roman numerals.
@@ -85,7 +88,6 @@ def roman_denomination(num, divisor, ones, fives, tens):
 
 # Import the doctest module to use the tests in the docstring
 if __name__ == "__main__":
-    import doctest
     doctest.testmod()
 
 
