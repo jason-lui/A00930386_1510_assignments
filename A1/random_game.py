@@ -41,7 +41,7 @@ def is_valid_rps(rps):
     """
     Determine if a string is rock paper or scissors.
 
-    :param choice: a string
+    :param rps: a string
     :precondition: choice must be a string
     :return: Boolean
     """
