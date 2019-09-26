@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
 # Component(s) of computational thinking
 
-# Pattern Matching and Date Representation
+# Pattern Matching and Data Representation
 # I used a boolean statement to return the principal if rate, times_compounded or years
 # were equal to 0. I recognized that the output will not change if any of these values were 0.
 # This information allowed me to create a shortcut for these cases.
