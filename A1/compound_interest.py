@@ -35,14 +35,14 @@ def compound_interest(principal, rate, times_compounded, years):
         return
 
     # Return principal if rate, times_compounded or years = 0
-    if rate == 0 or times_compounded == 0 or years == 0:
+    if principal == 0 or rate == 0 or times_compounded == 0 or years == 0:
         return principal
 
     # Calculate A, the balance after the elapsed time
     A = principal * (1 + rate / times_compounded) ** (rate * years)
 
     # Return A rounded to 2 decimal places
-    return float("{:.2f}".format(A))
+    return round(A, 2)
 
 
 # Import the doctest module to use the tests in the docstring
@@ -53,6 +53,6 @@ if __name__ == "__main__":
 # Component(s) of computational thinking
 
 # Pattern Matching and Data Representation
-# I used a boolean statement to return the principal if rate, times_compounded or years
-# were equal to 0. I recognized that the output will not change if any of these values were 0.
-# This information allowed me to create a shortcut for these cases.
+# I recognized that the input will equal the output if parameter is 0.
+# Once I noticed this pattern, I added a boolean statement to return the principal in these cases.
+# Noticing the pattern in outputs allowed to create a shortcut for this problem.
