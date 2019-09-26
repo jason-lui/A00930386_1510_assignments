@@ -1,3 +1,6 @@
+import doctest
+
+
 def rock_paper_scissors():
     """
     Play a game of rock paper scissors.
@@ -44,6 +47,15 @@ def is_valid_rps(rps):
     :param rps: a string
     :precondition: choice must be a string
     :return: Boolean
+
+    >>> is_valid_rps('rock')
+    True
+    >>> is_valid_rps('paper')
+    True
+    >>> is_valid_rps('scissors')
+    True
+    >>> is_valid_rps('banana')
+    False
     """
     rps = rps.strip().lower()
     return rps == "rock" or rps == "paper" or rps == "scissors"
@@ -75,7 +87,7 @@ def main():
 
 # Call the main function
 if __name__ == '__main__':
-    main()
+    doctest.testmod()
 
 
 # Component(s) of computational thinking

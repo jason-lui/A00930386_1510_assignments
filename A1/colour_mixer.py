@@ -1,3 +1,6 @@
+import doctest
+
+
 def colour_mixer():
     """
     Combine 2 primary colours into a secondary colour.
@@ -37,6 +40,15 @@ def is_primary(colour):
     :precondition: colour must be a string of "red", "yellow" or "blue" (case insensitive)
     :postcondition: determines if colour is a primary colour
     :return: Boolean
+
+    >>> is_primary('red')
+    True
+    >>> is_primary('yellow')
+    True
+    >>> is_primary('blue')
+    True
+    >>> is_primary('purple')
+    False
     """
     # Strip whitespace and converts string to lower case
     colour = colour.strip().lower()
@@ -52,7 +64,7 @@ def main():
 
 # Call the the main function
 if __name__ == '__main__':
-    main()
+    doctest.testmod()
 
 
 # Component(s) of computational thinking

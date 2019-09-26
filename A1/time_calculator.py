@@ -39,10 +39,16 @@ def time_converter(seconds, time_frame):
     """
     Convert seconds to the specified time frame.
 
+    :param seconds: an integer
     :param time_frame: an integer
     :precondition: time_frame must be an integer
     :postcondition: the returned amount of time is an integer
     :return: the seconds divided by the time_frame as an integer
+
+    >>> time_converter(3000, 3600)
+    0
+    >>> time_converter(4000, 3600)
+    1
     """
     return seconds // time_frame
 

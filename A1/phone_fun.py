@@ -1,3 +1,6 @@
+import doctest
+
+
 def number_translator():
     """
     Decode an alphanumeric phone number into numbers.
@@ -21,6 +24,13 @@ def decode(char):
     :precondition: char must be a string of a single alphanumeric character
     :postcondition: the character will be decoded into its integer equivalent
     :return: the corresponding integer as a string
+
+    >>> decode('1')
+    '1'
+    >>> decode('a')
+    '2'
+    >>> decode('%')
+    '%'
     """
     # char is stripped of its whitespace and made lowercase
     char = char.strip().lower()
@@ -60,7 +70,7 @@ def main():
 
 # Call the main function
 if __name__ == '__main__':
-    main()
+    doctest.testmod()
 
 # Component(s) of computational thinking
 
