@@ -1,3 +1,6 @@
+import doctest
+
+
 def number_generator():
     """
     Print 6 unique numbers.
@@ -27,7 +30,7 @@ def main():
 
 # Call the main function
 if __name__ == '__main__':
-    main()
+    doctest.testmod()
 
 
 # Component(s) of computational thinking
