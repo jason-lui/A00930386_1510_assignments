@@ -11,6 +11,7 @@ def number_translator():
     """
     phone = input("Enter a 10-character phone number to be decoded (XXX-XXX-XXXX): ").strip().lower()
 
+    # Concatenates result
     return decode(phone[0]) + decode(phone[1]) + decode(phone[2]) + decode(phone[3]) + \
            decode(phone[4]) + decode(phone[5]) + decode(phone[6]) + decode(phone[7]) + \
            decode(phone[8]) + decode(phone[9]) + decode(phone[10]) + decode(phone[11])
