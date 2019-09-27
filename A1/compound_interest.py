@@ -28,7 +28,7 @@ def compound_interest(principal, rate, times_compounded, years):
     >>> compound_interest(10, 1.13, 3, 5)
     60.87
     """
-    # Return principal if rate, times_compounded or years = 0
+    # Return principal if any input = 0
     if principal == 0 or rate == 0 or times_compounded == 0 or years == 0:
         return principal
 
