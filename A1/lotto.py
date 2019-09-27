@@ -28,7 +28,7 @@ def main():
     number_generator()
 
 
-# Call the main function
+# Import the doctest module to use the tests docstrings
 if __name__ == '__main__':
     doctest.testmod()
 

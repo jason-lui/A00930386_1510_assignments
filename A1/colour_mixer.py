@@ -62,7 +62,7 @@ def main():
     colour_mixer()
 
 
-# Call the the main function
+# Import the doctest module to use the tests docstrings
 if __name__ == '__main__':
     doctest.testmod()
 
