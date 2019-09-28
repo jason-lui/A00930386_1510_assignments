@@ -41,21 +41,21 @@ def decode(char):
         return char
 
     # char is converted to its associated integer
-    if char in "abc":
+    if char == "a" or char == "b" or char == "c":
         return "2"
-    elif char in "def":
+    elif char == "d" or char == "e" or char == "f":
         return "3"
-    elif char in "ghi":
+    elif char == "g" or char == "h" or char == "i":
         return "4"
-    elif char in "jkl":
+    elif char == "j" or char == "k" or char == "l":
         return "5"
-    elif char in "mno":
+    elif char == "m" or char == "n" or char == "o":
         return "6"
-    elif char in "pqrs":
+    elif char == "p" or char == "q" or char == "r" or char == "s":
         return "7"
-    elif char in "tuv":
+    elif char == "t" or char == "u" or char == "v":
         return "8"
-    elif char in "wxyz":
+    elif char == "w" or char == "x" or char == "y" or char == "z":
         return "9"
 
     # Return char back if not alphanumeric or "-"
