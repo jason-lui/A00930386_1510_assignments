@@ -89,9 +89,15 @@ def roman_denomination(num, divisor, ones, fives, tens):
     return result
 
 
-# Import the doctest module to use the tests docstrings
-if __name__ == "__main__":
+def main():
+    """
+    Drive the program.
+    """
     doctest.testmod()
+
+
+if __name__ == "__main__":
+    main()
 
 
 # Component(s) of computational thinking

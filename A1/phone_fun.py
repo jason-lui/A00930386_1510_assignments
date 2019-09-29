@@ -67,11 +67,11 @@ def main():
     Drive the program.
     """
     print(number_translator())
-
-
-# Import the doctest module to use the tests docstrings
-if __name__ == '__main__':
     doctest.testmod()
+
+
+if __name__ == '__main__':
+    main()
 
 
 # Component(s) of computational thinking
