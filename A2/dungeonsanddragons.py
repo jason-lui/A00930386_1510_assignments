@@ -115,33 +115,26 @@ def create_character(name_length):
     :postcondition: a character's name, and attributes will be generated
     :return: a list containing a character's name and attributes
     """
-    char_info = []
+    # Start dictionary
+    char_info = {}
+
+    # Generate name and add to dictionary
     name = generate_name(name_length)
-    char_info.append(name)
+    char_info["Name"] = name
 
-    str_stat = roll_die(3, 6)
-    strength = ['Strength', str_stat]
-    char_info.append(strength)
+    # Roll 3d6 for each stat
+    char_info["Strength"] = roll_die(3, 6)
+    char_info["Dexterity"] = roll_die(3, 6)
+    char_info["Constitution"] = roll_die(3, 6)
+    char_info["Intelligence"] = roll_die(3, 6)
+    char_info["Wisdom"] = roll_die(3, 6)
+    char_info["Charisma"] = roll_die(3, 6)
 
-    dex_stat = roll_die(3, 6)
-    dexterity = ['Dexterity', dex_stat]
-    char_info.append(dexterity)
+    # Character starts with 0 experience
+    char_info["XP"] = 0
 
-    con_stat = roll_die(3, 6)
-    constitution = ['Constitution', con_stat]
-    char_info.append(constitution)
-
-    int_stat = roll_die(3, 6)
-    intelligence = ['Intelligence', int_stat]
-    char_info.append(intelligence)
-
-    wis_stat = roll_die(3, 6)
-    wisdom = ['Wisdom', wis_stat]
-    char_info.append(wisdom)
-
-    cha_stat = roll_die(3, 6)
-    charisma = ['Charisma', cha_stat]
-    char_info.append(charisma)
+    # Character starts with empty inventory
+    char_info["Inventory"] = []
 
     return char_info
 
@@ -164,9 +157,27 @@ def print_character(character):
     # If the character has an inventory
     if len(character) == 8:
         print("\n--Inventory--")
-        if character[-1]: # Items in the inventory
+        if character[-1]:  # Items in the inventory
             for item in character[-1]:
                 print(item)
-        else: # No items in the inventory
+        else:  # No items in the inventory
             print("You have no items...")
     return
+
+
+def select_class():
+    """
+    !!!
+    :return:
+    """
+    classes = ["Fighter", "Wizard", "Cleric", "Rogue", "Ranger", "Barbarian", "Bard",
+               "Druid", "Monk", "Paladin", "Sorcerer", "Warlock"]
+    for i in range(len(classes)):
+        print(f"{i}. {classes[i]}")
+
+    choice = input("Choose a class: ").title()
+    if choice in classes:
+        print(f"You are a {choice}.")
+    else:
+        print(f"{choice} is not a class.")
+    return choice
