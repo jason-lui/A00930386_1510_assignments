@@ -122,6 +122,9 @@ def create_character(name_length):
     name = generate_name(name_length)
     char_info["Name"] = name
 
+    # User selects a class
+    char_info["Class"] = select_class()
+
     # Roll 3d6 for each stat
     char_info["Strength"] = roll_die(3, 6)
     char_info["Dexterity"] = roll_die(3, 6)
@@ -170,14 +173,45 @@ def select_class():
     !!!
     :return:
     """
-    classes = ["Fighter", "Wizard", "Cleric", "Rogue", "Ranger", "Barbarian", "Bard",
-               "Druid", "Monk", "Paladin", "Sorcerer", "Warlock"]
+    classes = ["fighter", "wizard", "cleric", "rogue", "ranger", "barbarian", "bard",
+               "druid", "monk", "paladin", "sorcerer", "warlock"]
     for i in range(len(classes)):
-        print(f"{i}. {classes[i]}")
+        print(f"{i + 1}. {classes[i].title()}")
 
-    choice = input("Choose a class: ").title()
+    choice = input("\nChoose a class: ").lower()
     if choice in classes:
-        print(f"You are a {choice}.")
+        print(f"You are a {choice.title()}.")
     else:
-        print(f"{choice} is not a class.")
+        print(f"{choice.title()} is not a class.")
     return choice
+
+
+def select_race():
+    """
+    !!!
+    :return:
+    """
+    races = ["elf", "halfling", "tiefling", "Dragonborn", "Dwarf", "Gnome", "Half-Elf",
+             "Halfling", "Half-Orc"]
+    for i in range(len(races)):
+        print(f"{i + 1}. {races[i].title()}")
+
+    choice = input("\nChoose a race: ").lower()
+    if choice in races:
+        if is_vowel(choice):
+            print(f"You are an {choice.title()}.")
+        else:
+            print(f"You are a {choice.title()}.")
+
+    else:
+        print(f"{choice.title()} is not a playable race.")
+    return choice
+
+
+def is_vowel(word):
+    """
+
+    :param word:
+    :return:
+    """
+    return word[0].lower() in ["a", "e", "i", "o", "u", "y"]
