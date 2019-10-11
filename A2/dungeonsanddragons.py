@@ -1,4 +1,5 @@
 import random
+import doctest
 
 
 def roll_die(number_of_rolls, number_of_sides):
@@ -37,6 +38,17 @@ def choose_inventory(inventory, selection):
     :precondition: selection must be a positive integer
     :postcondition: a list of random items from the inventory will be generated
     :return: a sorted list of random items
+
+    >>> choose_inventory([], 0)
+    []
+    >>> choose_inventory([], 1)
+    WARNING: The number of items selected is larger than the size of the inventory.
+    []
+    >>> choose_inventory(['Boots of Lucidity'], -1)
+    WARNING: The number of items selected is negative.
+    []
+    >>> choose_inventory(['Boots of Lucidity'], 0)
+    []
     """
     if not inventory and selection == 0:
         return []
@@ -75,23 +87,23 @@ def generate_vowel():
     """
     Generate a random vowel (y included).
 
-    :postcondition: a single random vowel will be generated
+    :postcondition: a single random vowel will be generated in lower case
     :return: the vowel as a string
     """
-    vowel_unicode = [97, 101, 105, 111, 117, 121]
-    return chr(random.choice(vowel_unicode))
+    vowels = ["a", "e", "i", "o", "u", "y"]
+    return random.choice(vowels)
 
 
 def generate_consonant():
     """
     Generate a random consonant.
 
-    :postcondition: a single random consonant will be generated
+    :postcondition: a single random consonant will be generated in lower case
     :return: the random consonant as a string
     """
-    consonant_unicode = [98, 99, 100, 102, 103, 104, 106, 107, 108, 109,
-                         110, 112, 113, 114, 115, 116, 118, 119, 120, 121, 122]
-    return chr(random.choice(consonant_unicode))
+    consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m",
+                  "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+    return random.choice(consonants)
 
 
 def generate_syllable():
@@ -99,7 +111,7 @@ def generate_syllable():
     Generate a syllable containing a random consonant preceding a random vowel.
 
     :postcondition: a random consonant and a random vowel will be returned
-    :return: a string containing a consonant and a vowel
+    :return: a string containing a consonant and a vowel in lower case
     """
     return generate_consonant() + generate_vowel()
 
@@ -151,6 +163,51 @@ def print_character(character):
     :param character: a list containing the character name, stat mini-lists (and inventory)
     :precondition: character must be a properly formatted list
     :postcondition: character name, stats and inventory will be printed
+
+    # This character has no bag
+    >>> print_character(["Liziqi", ["Strength", 18], ["Dexterity", 18], ["Constitution", 18],
+    ... ["Intelligence", 18], ['Wisdom', 18], ["Charisma", 18]])
+    Your character's name is Liziqi.
+    <BLANKLINE>
+    --Attributes--
+    Strength: 18
+    Dexterity: 18
+    Constitution: 18
+    Intelligence: 18
+    Wisdom: 18
+    Charisma: 18
+
+    # This character has a bag but no items
+    >>> print_character(["Liziqi", ["Strength", 18], ["Dexterity", 18], ["Constitution", 18],
+    ... ["Intelligence", 18], ['Wisdom', 18], ["Charisma", 18], []])
+    Your character's name is Liziqi.
+    <BLANKLINE>
+    --Attributes--
+    Strength: 18
+    Dexterity: 18
+    Constitution: 18
+    Intelligence: 18
+    Wisdom: 18
+    Charisma: 18
+    <BLANKLINE>
+    --Inventory--
+    You have no items...
+
+    # This character has a bag with items
+    >>> print_character(["Liziqi", ["Strength", 18], ["Dexterity", 18], ["Constitution", 18],
+    ... ["Intelligence", 18], ['Wisdom', 18], ["Charisma", 18], ["Boots of Swiftness, Rabadon's Deathcap"]])
+    Your character's name is Liziqi.
+    <BLANKLINE>
+    --Attributes--
+    Strength: 18
+    Dexterity: 18
+    Constitution: 18
+    Intelligence: 18
+    Wisdom: 18
+    Charisma: 18
+    <BLANKLINE>
+    --Inventory--
+    Boots of Swiftness, Rabadon's Deathcap
     """
     print(f"Your character's name is {character[0]}.\n")
     print("--Attributes--")
@@ -160,10 +217,10 @@ def print_character(character):
     # If the character has an inventory
     if len(character) == 8:
         print("\n--Inventory--")
-        if character[-1]:  # Items in the inventory
+        if character[-1]: # Items in the inventory
             for item in character[-1]:
                 print(item)
-        else:  # No items in the inventory
+        else: # No items in the inventory
             print("You have no items...")
     return
 
@@ -202,7 +259,6 @@ def select_race():
             print(f"You are an {choice.title()}.")
         else:
             print(f"You are a {choice.title()}.")
-
     else:
         print(f"{choice.title()} is not a playable race.")
     return choice
@@ -215,3 +271,7 @@ def is_vowel(word):
     :return:
     """
     return word[0].lower() in ["a", "e", "i", "o", "u", "y"]
+
+
+if __name__ == '__main__':
+    doctest.testmod()
