@@ -265,5 +265,54 @@ def roll_hp(char_class):
 
     return [hp, hp]
 
+
+def combat_round(opponent_one, opponent_two):
+    """
+
+    :param opponent_one:
+    :param opponent_two:
+    :return:
+    """
+    while True:
+        roll_1 = roll_die(1, 20)
+        roll_2 = roll_die(1, 20)
+        if roll_1 > roll_2:
+            order = [opponent_one, opponent_two]
+            print(f"{opponent_one} will go first.")
+            break
+        elif roll_2 < roll_1:
+            order = [opponent_two, opponent_one]
+            print(f"{opponent_two} will go first.")
+            break
+
+    roll_1 = roll_die(1, 20)
+    if roll_1 > order[1]["Dexterity"]:
+        dmg = roll_die(1, order[1]["HP"][0])
+        order[1]["HP"][1] -= dmg
+        print("The attack was a success!")
+        print(f"{order[1]} took {dmg} damage.")
+        if order[1]["HP"][1] > 0:
+            print(f"{order[1]} has {order[1]['HP'][1]} HP left.")
+        else:
+            print(f"{order[1]} has died!")
+    else:
+        print(f"{order[0]}'s attack failed!")
+
+    roll_2 = roll_die(1, 20)
+    if roll_2 > order[0]["Dexterity"]:
+        dmg = roll_die(1, order[0]["HP"][0])
+        order[0]["HP"][1] -= dmg
+        print("The attack was a success!")
+        print(f"{order[0]} took {dmg} damage.")
+        if order[0]["HP"][1] > 0:
+            print(f"{order[0]} has {order[0]['HP'][1]} HP left.")
+        else:
+            print(f"{order[0]} has died!")
+    else:
+        print(f"{order[1]}'s attack failed!")
+
+
+
+
 if __name__ == '__main__':
     doctest.testmod()
