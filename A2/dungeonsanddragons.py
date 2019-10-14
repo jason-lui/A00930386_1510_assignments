@@ -72,6 +72,7 @@ def generate_name(syllables):
     # Generate name with the specified number of syllables
     for i in range(syllables):
         name += generate_syllable()
+
     return name.title()
 
 
@@ -83,6 +84,7 @@ def generate_vowel():
     :return: the vowel as a string
     """
     vowels = ["a", "e", "i", "o", "u", "y"]
+
     return random.choice(vowels)
 
 
@@ -95,6 +97,7 @@ def generate_consonant():
     """
     consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m",
                   "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+
     return random.choice(consonants)
 
 
@@ -218,8 +221,8 @@ def print_character(character):
                 print(item)
         else: # No items in the inventory
             print("You have no items...")
-    return
 
+    return
 
 def select_class():
     """
@@ -232,6 +235,7 @@ def select_class():
         print(f"{i + 1}. {classes[i].title()}")
 
     choice = input("\nChoose a class: ").lower()
+
     return choice
 
 
@@ -246,6 +250,7 @@ def select_race():
         print(f"{i + 1}. {races[i].title()}")
 
     choice = input("\nChoose a race: ").lower()
+
     return choice
 
 
@@ -268,51 +273,72 @@ def roll_hp(char_class):
 
 def combat_round(opponent_one, opponent_two):
     """
-
+    !!!
     :param opponent_one:
     :param opponent_two:
+    :return:
+    """
+    order = roll_order(opponent_one, opponent_two)
+
+    attack(order[0], order[1])
+    attack(order[1], order[0])
+
+    return
+
+
+def roll_order(bot_1, bot_2):
+    """
+    !!!
+    :param bot_1:
+    :param bot_2:
     :return:
     """
     while True:
         roll_1 = roll_die(1, 20)
         roll_2 = roll_die(1, 20)
         if roll_1 > roll_2:
-            order = [opponent_one, opponent_two]
-            print(f"{opponent_one} will go first.")
+            order = [bot_1, bot_2]
+            print(f"{bot_1} will go first.")
             break
         elif roll_2 < roll_1:
-            order = [opponent_two, opponent_one]
-            print(f"{opponent_two} will go first.")
+            order = [bot_2, bot_1]
+            print(f"{bot_2} will go first.")
             break
 
-    roll_1 = roll_die(1, 20)
-    if roll_1 > order[1]["Dexterity"]:
-        dmg = roll_die(1, order[1]["HP"][0])
-        order[1]["HP"][1] -= dmg
-        print("The attack was a success!")
-        print(f"{order[1]} took {dmg} damage.")
-        if order[1]["HP"][1] > 0:
-            print(f"{order[1]} has {order[1]['HP'][1]} HP left.")
-        else:
-            print(f"{order[1]} has died!")
-    else:
-        print(f"{order[0]}'s attack failed!")
+    return order
 
-    roll_2 = roll_die(1, 20)
-    if roll_2 > order[0]["Dexterity"]:
-        dmg = roll_die(1, order[0]["HP"][0])
-        order[0]["HP"][1] -= dmg
-        print("The attack was a success!")
-        print(f"{order[0]} took {dmg} damage.")
-        if order[0]["HP"][1] > 0:
-            print(f"{order[0]} has {order[0]['HP'][1]} HP left.")
-        else:
-            print(f"{order[0]} has died!")
-    else:
-        print(f"{order[1]}'s attack failed!")
 
+def attack(attacker, target):
+    """
+
+    :param attacker:
+    :param target:
+    :return:
+    """
+    roll = roll_die(1, 20)
+    if roll > target["Dexterity"]:
+        dmg = roll_die(1, target["HP"][0])
+        target["HP"][1] -= dmg
+        print("The attack was a success!")
+        print(f"{target} took {dmg} damage.")
+        if target["HP"][1] > 0:
+            print(f"{target} has {target['HP'][1]} HP left.")
+        else:
+            print(f"{target} has died!")
+    else:
+        print(f"{attacker}'s attack failed!")
+
+    return
+
+
+def main():
+    """
+
+    :return:
+    """
 
 
 
 if __name__ == '__main__':
     doctest.testmod()
+    main()
