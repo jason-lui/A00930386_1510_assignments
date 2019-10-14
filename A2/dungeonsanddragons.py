@@ -27,7 +27,7 @@ def roll_die(number_of_rolls, number_of_sides):
     return total
 
 
-def choose_inventory(inventory, selection):
+def choose_inventory(inventory):
     """
     Choose random items from an inventory.
 
@@ -38,32 +38,24 @@ def choose_inventory(inventory, selection):
     :precondition: selection must be a positive integer
     :postcondition: a list of random items from the inventory will be generated
     :return: a sorted list of random items
-
-    >>> choose_inventory([], 0)
-    []
-    >>> choose_inventory([], 1)
-    WARNING: The number of items selected is larger than the size of the inventory.
-    []
-    >>> choose_inventory(['Boots of Lucidity'], -1)
-    WARNING: The number of items selected is negative.
-    []
-    >>> choose_inventory(['Boots of Lucidity'], 0)
-    []
     """
-    if not inventory and selection == 0:
-        return []
-    if selection < 0:
-        print("WARNING: The number of items selected is negative.")
-        return []
-    if selection > len(inventory):
-        print("WARNING: The number of items selected is larger than the size of the inventory.")
-        return sorted(inventory)
-    if selection == len(inventory):
-        return sorted(inventory)
+    item_list = []
 
-    # Generates a sorted selection of elements from inventory at random
-    random_list = random.sample(inventory, selection)
-    return sorted(random_list)
+    print("Welcome to the Olde Tyme Merchant!\n")
+    print("Here is what we have for sale:")
+
+    while True:
+        for i in range(sorted(inventory)):
+            print(f"{i + 1}.{inventory[i]}")
+        choice = int(input("What would you like to buy? (-1 to finish)"))
+        if choice == -1:
+            break
+        elif 1 <= choice <= len(inventory):
+            item_list.append(inventory[choice - 1])
+        else:
+            print("You must enter a number corresponding to an item in the list.\n")
+
+    return item_list
 
 
 def generate_name(syllables):
@@ -134,9 +126,12 @@ def create_character(name_length):
     name = generate_name(name_length)
     char_info["Name"] = name
 
-    # User selects a class
+    # User selects a class and race
     char_info["Class"] = select_class()
     char_info["Race"] = select_race()
+
+    # Character's hit points
+    char_info["HP"] = roll_hp(char_info["Class"])
 
     # Roll 3d6 for each stat
     char_info["Strength"] = roll_die(3, 6)
@@ -253,6 +248,22 @@ def select_race():
     choice = input("\nChoose a race: ").lower()
     return choice
 
+
+def roll_hp(char_class):
+    """
+    !!!
+    :return:
+    """
+    if char_class in ["sorcerer", "wizard"]:
+        hp = roll_die(1, 6)
+    elif char_class in ["bard", "cleric", "druid", "monk", "rogue", "warlock"]:
+        hp = roll_die(1, 8)
+    elif char_class in ["fighter", "paladin", "ranger"]:
+        hp = roll_die(1, 10)
+    elif char_class in ["barbarian"]:
+        hp = roll_die(1, 12)
+
+    return [hp, hp]
 
 if __name__ == '__main__':
     doctest.testmod()
