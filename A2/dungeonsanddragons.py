@@ -168,7 +168,7 @@ def print_character(character):
     print(f"Your character's name is {character[0]}.\n")
     print(f"Class: {character['Class']}")
     print(f"Race: {character['Race']}")
-    print(f"HP: {character['HP'][0]}/{character['HP'][1]}\n")
+    print(f"HP: {character['HP'][1]}/{character['HP'][0]}\n")
     print(f"EXP: {character['XP']}")
 
     # Print character stats
@@ -190,6 +190,7 @@ def print_character(character):
             print("You have no items...")
 
     return
+
 
 def select_class():
     """
@@ -282,18 +283,22 @@ def attack(attacker, target):
     :param target:
     :return:
     """
+    # Print initial HP of the target
+    print(f"{target}'s HP: {target['HP'][1]}/{target['HP'][0]}")
+
     roll = roll_die(1, 20)
     if roll > target["Dexterity"]:
         dmg = roll_die(1, target["HP"][0])
         target["HP"][1] -= dmg
         print("The attack was a success!")
         print(f"{target} took {dmg} damage.")
-        if target["HP"][1] > 0:
-            print(f"{target} has {target['HP'][1]} HP left.")
-        else:
+        if target["HP"][1] <= 0:
             print(f"{target} has died!")
     else:
         print(f"{attacker}'s attack failed!")
+
+    # Print remaining HP of the target
+    print(f"{target}'s HP: {target['HP'][1]}/{target['HP'][0]}")
 
     return
 
@@ -305,18 +310,20 @@ def main():
     """
 
     # Ask user for the length of their username
-    name_length = int(input("Enter the length of your username: "))
+    name_length_1 = int(input("Enter the length of Player 1: "))
+    name_length_2 = int(input("Enter the length of Player 1: "))
 
     # create_character() calls roll_die() and create_name()
     # create_name() calls generate_syllable()
     # generate_syllable() calls generate_consonant() and generate_vowel()
-    # Inform the user that their stats are being rolled
-    print("Rolling for strength, dexterity, constitution, intelligence, wisdom, charisma...")
-    character = create_character(name_length)
-
-    # Show rolls
-    print(f"You rolled: {character[1][1]}, {character[2][1]}, {character[3][1]}, {character[4][1]}, {character[5][1]}, {character[6][1]}!")
-    print("\n")
+    # Inform the users the stats that were rolled
+    print("Rolling stats for characters")
+    char_1, char_2 = create_character(name_length_1), create_character(name_length_2)
+    
+    print(f"Player 1 rolled: {char_1['Strength']}, {char_1['Dexterity']}, {char_1['Constitution']}, "
+          f"{char_1['Intelligence']}, {char_1['Wisdom']}, {char_1['Charisma']}\n")
+    print(f"Player 2 rolled: {char_2['Strength']}, {char_2['Dexterity']}, {char_2['Constitution']}, "
+          f"{char_2['Intelligence']}, {char_2['Wisdom']}, {char_2['Charisma']}\n")
 
     # A list of possible items in the game
     item_list = ['Rabadon\'s Deathcap',
@@ -336,27 +343,22 @@ def main():
                  'Boots of Alacrity',
                  'Mercury Treads']
 
-    # Show items in the store
-    print("--Available items in the store--")
-    for item in item_list:
-        print(item)
-    print("\n")
+    # Fill the characters inventories with items
+    char_1["Inventory"] += choose_inventory(item_list)
+    char_2["Inventory"] += choose_inventory(item_list)
 
-    # Ask user for how many items they would like
-    num_of_items = int(input("How many items would you like? (MAX 16): "))
-    print("\n")
-    print("----------------------------------------------------")
+    # Print character stats and inventory
+    print_character(char_1)
+    print_character(char_2)
 
-    # Choose items for the character's inventory using choose_inventory()
-    character_items = choose_inventory(item_list, num_of_items)
-    character.append(character_items)
+    # While both characters are alive
+    while char_1["hp"][1] > 0 and char_2["hp"][1] > 0:
+        combat_round(char_1, char_2)
 
-    # Print character info
-    print_character(character)
     return
-
 
 
 if __name__ == '__main__':
     doctest.testmod()
     main()
+
