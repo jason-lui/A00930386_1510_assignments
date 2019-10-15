@@ -162,62 +162,29 @@ def print_character(character):
     :param character: a list containing the character name, stat mini-lists (and inventory)
     :precondition: character must be a properly formatted list
     :postcondition: character name, stats and inventory will be printed
-
-    # This character has no bag
-    >>> print_character(["Liziqi", ["Strength", 18], ["Dexterity", 18], ["Constitution", 18],
-    ... ["Intelligence", 18], ['Wisdom', 18], ["Charisma", 18]])
-    Your character's name is Liziqi.
-    <BLANKLINE>
-    --Attributes--
-    Strength: 18
-    Dexterity: 18
-    Constitution: 18
-    Intelligence: 18
-    Wisdom: 18
-    Charisma: 18
-
-    # This character has a bag but no items
-    >>> print_character(["Liziqi", ["Strength", 18], ["Dexterity", 18], ["Constitution", 18],
-    ... ["Intelligence", 18], ['Wisdom', 18], ["Charisma", 18], []])
-    Your character's name is Liziqi.
-    <BLANKLINE>
-    --Attributes--
-    Strength: 18
-    Dexterity: 18
-    Constitution: 18
-    Intelligence: 18
-    Wisdom: 18
-    Charisma: 18
-    <BLANKLINE>
-    --Inventory--
-    You have no items...
-
-    # This character has a bag with items
-    >>> print_character(["Liziqi", ["Strength", 18], ["Dexterity", 18], ["Constitution", 18],
-    ... ["Intelligence", 18], ['Wisdom', 18], ["Charisma", 18], ["Boots of Swiftness, Rabadon's Deathcap"]])
-    Your character's name is Liziqi.
-    <BLANKLINE>
-    --Attributes--
-    Strength: 18
-    Dexterity: 18
-    Constitution: 18
-    Intelligence: 18
-    Wisdom: 18
-    Charisma: 18
-    <BLANKLINE>
-    --Inventory--
-    Boots of Swiftness, Rabadon's Deathcap
     """
+
+    # Print name, class, race, HP, and EXP
     print(f"Your character's name is {character[0]}.\n")
+    print(f"Class: {character['Class']}")
+    print(f"Race: {character['Race']}")
+    print(f"HP: {character['HP'][0]}/{character['HP'][1]}\n")
+    print(f"EXP: {character['XP']}")
+
+    # Print character stats
     print("--Attributes--")
-    for stat in character[1:7]:
-        print(f"{stat[0]}: {stat[1]}")
+    print(f"Strength: {character['Strength']}")
+    print(f"Dexterity: {character['Dexterity']}")
+    print(f"Constitution: {character['Constitution']}")
+    print(f"Intelligence: {character['Intelligence']}")
+    print(f"Wisdom: {character['Wisdom']}")
+    print(f"Charisma: {character['Charisma']}\n")
 
     # If the character has an inventory
-    if len(character) == 8:
+    if "Inventory" in character.keys():
         print("\n--Inventory--")
-        if character[-1]: # Items in the inventory
-            for item in character[-1]:
+        if character["Inventory"]: # Items in the inventory
+            for item in character["Inventory"]:
                 print(item)
         else: # No items in the inventory
             print("You have no items...")
@@ -345,7 +312,7 @@ def main():
     # generate_syllable() calls generate_consonant() and generate_vowel()
     # Inform the user that their stats are being rolled
     print("Rolling for strength, dexterity, constitution, intelligence, wisdom, charisma...")
-    character = lab05.create_character(name_length)
+    character = create_character(name_length)
 
     # Show rolls
     print(f"You rolled: {character[1][1]}, {character[2][1]}, {character[3][1]}, {character[4][1]}, {character[5][1]}, {character[6][1]}!")
@@ -381,11 +348,11 @@ def main():
     print("----------------------------------------------------")
 
     # Choose items for the character's inventory using choose_inventory()
-    character_items = lab05.choose_inventory(item_list, num_of_items)
+    character_items = choose_inventory(item_list, num_of_items)
     character.append(character_items)
 
     # Print character info
-    lab05.print_character(character)
+    print_character(character)
     return
 
 
