@@ -45,9 +45,13 @@ def choose_inventory(inventory):
     print("Here is what we have for sale:")
 
     while True:
-        for i in range(sorted(inventory)):
-            print(f"{i + 1}.{inventory[i]}")
-        choice = int(input("What would you like to buy? (-1 to finish)"))
+        print("--Current Inventory--")
+        for item in item_list:
+            print(item)
+        print("\n")
+        for i in range(len(inventory)):
+            print(f"{i + 1}. {inventory[i]}")
+        choice = int(input("\nWhat would you like to buy? (-1 to finish): "))
         if choice == -1:
             break
         elif 1 <= choice <= len(inventory):
@@ -164,14 +168,13 @@ def print_character(character):
     :postcondition: character name, stats and inventory will be printed
     """
 
-    # Print name, class, race, HP, and EXP
-    print(f"Your character's name is {character[0]}.\n")
+    # Print name, class, race, HP
+    print(f"Your character's name is {character['Name']}.\n")
     print(f"Class: {character['Class']}")
     print(f"Race: {character['Race']}")
     print(f"HP: {character['HP'][1]}/{character['HP'][0]}\n")
-    print(f"EXP: {character['XP']}")
 
-    # Print character stats
+    # Print character stats and EXP
     print("--Attributes--")
     print(f"Strength: {character['Strength']}")
     print(f"Dexterity: {character['Dexterity']}")
@@ -179,14 +182,15 @@ def print_character(character):
     print(f"Intelligence: {character['Intelligence']}")
     print(f"Wisdom: {character['Wisdom']}")
     print(f"Charisma: {character['Charisma']}\n")
+    print(f"EXP: {character['XP']}")
 
     # If the character has an inventory
     if "Inventory" in character.keys():
         print("\n--Inventory--")
-        if character["Inventory"]: # Items in the inventory
+        if character["Inventory"]:  # Items in the inventory
             for item in character["Inventory"]:
                 print(item)
-        else: # No items in the inventory
+        else:  # No items in the inventory
             print("You have no items...")
 
     return
@@ -194,8 +198,11 @@ def print_character(character):
 
 def select_class():
     """
-    !!!
-    :return:
+    Select a class from Dungeons and Dragons.
+
+    User inputs a number corresponding to a class.
+    :postcondition: a class will be selected
+    :return: the class as a string in lower case
     """
     classes = ["fighter", "wizard", "cleric", "rogue", "ranger", "barbarian", "bard",
                "druid", "monk", "paladin", "sorcerer", "warlock"]
@@ -203,15 +210,19 @@ def select_class():
     for i in range(len(classes)):
         print(f"{i + 1}. {classes[i].title()}")
 
-    choice = input("\nChoose a class: ").lower()
+    choice = int(input(f"\nChoose a class (1-{len(classes)}): "))
+    choice = classes[choice + 1]
 
     return choice
 
 
 def select_race():
     """
-    !!!
-    :return:
+    Select a race from Dungeons and Dragons.
+
+    User inputs a number corresponding to a race.
+    :postcondition: a race will be selected
+    :return: the race as a string in lower case
     """
     races = ["elf", "halfling", "tiefling", "dragonborn", "dwarf", "gnome", "half-Elf",
              "halfling", "half-Orc"]
@@ -219,15 +230,18 @@ def select_race():
     for i in range(len(races)):
         print(f"{i + 1}. {races[i].title()}")
 
-    choice = input("\nChoose a race: ").lower()
+    choice = int(input(f"\nChoose a race (1-{len(races)}): "))
+    choice = races[choice + 1]
 
     return choice
 
 
 def roll_hp(char_class):
     """
-    !!!
-    :return:
+    Roll HP based on the character's class.
+
+    :postcondition: an HP value for the character's class will be returned
+    :return: a list containing the total and current HP as integers
     """
     if char_class in ["sorcerer", "wizard"]:
         hp = roll_die(1, 6)
@@ -243,13 +257,19 @@ def roll_hp(char_class):
 
 def combat_round(opponent_one, opponent_two):
     """
-    !!!
-    :param opponent_one:
-    :param opponent_two:
-    :return:
+    Simulate one round of combat between characters.
+
+    Players will to determine attacking order.
+    Each character attacks once.
+    :param opponent_one: a character
+    :param opponent_two: a character
+    :precondition: opponent_one must be a properly formatted character
+    :precondition: opponent_two must be a properly formatted character
+    :postcondition: a battle will be simulated
     """
     order = roll_order(opponent_one, opponent_two)
 
+    # Attack
     attack(order[0], order[1])
     attack(order[1], order[0])
 
@@ -258,7 +278,7 @@ def combat_round(opponent_one, opponent_two):
 
 def roll_order(bot_1, bot_2):
     """
-    !!!
+    
     :param bot_1:
     :param bot_2:
     :return:
@@ -268,11 +288,11 @@ def roll_order(bot_1, bot_2):
         roll_2 = roll_die(1, 20)
         if roll_1 > roll_2:
             order = [bot_1, bot_2]
-            print(f"{bot_1} will go first.")
+            print(f"\n{bot_1['Name']} will go first.")
             break
         elif roll_2 < roll_1:
             order = [bot_2, bot_1]
-            print(f"{bot_2} will go first.")
+            print(f"\n{bot_2['Name']} will go first.")
             break
 
     return order
@@ -285,22 +305,26 @@ def attack(attacker, target):
     :param target:
     :return:
     """
+    # Check if the attacker is dead
+    if attacker["HP"] <= 0:
+        return
+
     # Print initial HP of the target
-    print(f"{target}'s HP: {target['HP'][1]}/{target['HP'][0]}")
+    print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}")
 
     roll = roll_die(1, 20)
     if roll > target["Dexterity"]:
         dmg = roll_die(1, target["HP"][0])
         target["HP"][1] -= dmg
         print("The attack was a success!")
-        print(f"{target} took {dmg} damage.")
+        print(f"{target['Name']} took {dmg} damage.")
         if target["HP"][1] <= 0:
-            print(f"{target} has died!")
+            print(f"{target['Name']} has died!")
     else:
-        print(f"{attacker}'s attack failed!")
+        print(f"{attacker['Name']}'s attack failed!")
 
     # Print remaining HP of the target
-    print(f"{target}'s HP: {target['HP'][1]}/{target['HP'][0]}")
+    print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}\n")
 
     return
 
@@ -321,9 +345,9 @@ def main():
     # Inform the users the stats that were rolled
     char_1, char_2 = create_character(name_length_1), create_character(name_length_2)
     print("Rolling stats for characters")
-    
+
     print(f"Player 1 rolled: {char_1['Strength']}, {char_1['Dexterity']}, {char_1['Constitution']}, "
-          f"{char_1['Intelligence']}, {char_1['Wisdom']}, {char_1['Charisma']}\n")
+          f"{char_1['Intelligence']}, {char_1['Wisdom']}, {char_1['Charisma']}")
     print(f"Player 2 rolled: {char_2['Strength']}, {char_2['Dexterity']}, {char_2['Constitution']}, "
           f"{char_2['Intelligence']}, {char_2['Wisdom']}, {char_2['Charisma']}\n")
 
@@ -353,9 +377,8 @@ def main():
     print_character(char_1)
     print_character(char_2)
 
-    # While both characters are alive
-    while char_1["hp"][1] > 0 and char_2["hp"][1] > 0:
-        combat_round(char_1, char_2)
+    # One combat round
+    combat_round(char_1, char_2)
 
     return
 
@@ -363,4 +386,3 @@ def main():
 if __name__ == '__main__':
     doctest.testmod()
     main()
-
