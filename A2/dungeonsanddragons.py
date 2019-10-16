@@ -199,6 +199,7 @@ def select_class():
     """
     classes = ["fighter", "wizard", "cleric", "rogue", "ranger", "barbarian", "bard",
                "druid", "monk", "paladin", "sorcerer", "warlock"]
+    print("Select a class:")
     for i in range(len(classes)):
         print(f"{i + 1}. {classes[i].title()}")
 
@@ -214,6 +215,7 @@ def select_race():
     """
     races = ["elf", "halfling", "tiefling", "dragonborn", "dwarf", "gnome", "half-Elf",
              "halfling", "half-Orc"]
+    print("Select a race:")
     for i in range(len(races)):
         print(f"{i + 1}. {races[i].title()}")
 
@@ -310,15 +312,15 @@ def main():
     """
 
     # Ask user for the length of their username
-    name_length_1 = int(input("Enter the length of Player 1: "))
-    name_length_2 = int(input("Enter the length of Player 1: "))
+    name_length_1 = int(input("Enter the name length of Player 1: "))
+    name_length_2 = int(input("Enter the name length of Player 2: "))
 
     # create_character() calls roll_die() and create_name()
     # create_name() calls generate_syllable()
     # generate_syllable() calls generate_consonant() and generate_vowel()
     # Inform the users the stats that were rolled
-    print("Rolling stats for characters")
     char_1, char_2 = create_character(name_length_1), create_character(name_length_2)
+    print("Rolling stats for characters")
     
     print(f"Player 1 rolled: {char_1['Strength']}, {char_1['Dexterity']}, {char_1['Constitution']}, "
           f"{char_1['Intelligence']}, {char_1['Wisdom']}, {char_1['Charisma']}\n")
