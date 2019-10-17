@@ -51,7 +51,7 @@ def choose_inventory(inventory):
         print("\n")
         for i in range(len(inventory)):
             print(f"{i + 1}. {inventory[i]}")
-        choice = int(input("\nWhat would you like to buy? (-1 to finish): "))
+        choice = int(input(f"\nWhat would you like to buy? (1-{len(inventory)}) (-1 to finish): "))
         if choice == -1:
             break
         elif 1 <= choice <= len(inventory):
@@ -169,7 +169,7 @@ def print_character(character):
     """
 
     # Print name, class, race, HP
-    print(f"Your character's name is {character['Name']}.\n")
+    print(f"\nYour character's name is {character['Name']}.\n")
     print(f"Class: {character['Class']}")
     print(f"Race: {character['Race']}")
     print(f"HP: {character['HP'][1]}/{character['HP'][0]}\n")
@@ -267,9 +267,10 @@ def combat_round(opponent_one, opponent_two):
     :precondition: opponent_two must be a properly formatted character
     :postcondition: a battle will be simulated
     """
+    # Roll for attacking order
     order = roll_order(opponent_one, opponent_two)
 
-    # Attack
+    # Characters attack each other
     attack(order[0], order[1])
     attack(order[1], order[0])
 
@@ -278,10 +279,16 @@ def combat_round(opponent_one, opponent_two):
 
 def roll_order(bot_1, bot_2):
     """
-    
-    :param bot_1:
-    :param bot_2:
-    :return:
+    Determine the attacking order for a battle round in Dungeons and Dragons.
+
+    Each character rolls 1d20 and the higher roll goes first.
+    Rolls until an order is determined.
+    :param bot_1: a character
+    :param bot_2: a character
+    :precondition: bot_1 must be a properly formatted character
+    :precondition: bot_2 must be a properly formatted character
+    :postcondition: the attacking order will be determined
+    :return: the attacking order as a list of characters
     """
     while True:
         roll_1 = roll_die(1, 20)
@@ -300,13 +307,16 @@ def roll_order(bot_1, bot_2):
 
 def attack(attacker, target):
     """
+    Simulates the attacker hitting a target in Dungeons and Dragons.
 
-    :param attacker:
-    :param target:
-    :return:
+    :param attacker: a character
+    :param target: a character
+    :precondition: attacker must be a properly formatted character
+    :precondition: target must be a properly formatted character
+    :postcondition: the attacker will try to attack the target
     """
     # Check if the attacker is dead
-    if attacker["HP"] <= 0:
+    if attacker["HP"][1] <= 0:
         return
 
     # Print initial HP of the target
@@ -331,10 +341,13 @@ def attack(attacker, target):
 
 def main():
     """
-    !!!
-    :return:
-    """
+    Create 2 characters for Dungeons and Dragons.
 
+    User inputs the length of the names to be generated
+    Attributes are rolled and inventories are selected.
+    The character battle in a combat round
+    :postcondition: character name, attributes, inventory and combat round will be printed
+    """
     # Ask user for the length of their username
     name_length_1 = int(input("Enter the name length of Player 1: "))
     name_length_2 = int(input("Enter the name length of Player 2: "))
