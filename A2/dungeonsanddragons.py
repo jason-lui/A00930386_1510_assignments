@@ -13,6 +13,13 @@ def roll_die(number_of_rolls, number_of_sides):
     :precondition: number_of_sides must be a positive integer
     :postcondition: the sum from the die rolls will be totaled
     :return: the total of the die rolls as an integer
+
+    >>> roll_die(0, 0)
+    0
+    >>> roll_die(0, 10)
+    0
+    >>> roll_die(10, 0)
+    0
     """
     total = 0
 
@@ -153,7 +160,6 @@ def create_character(name_length):
 
     # Character starts with empty inventory
     char_info["Inventory"] = []
-
     return char_info
 
 
@@ -166,8 +172,54 @@ def print_character(character):
     :param character: a list containing the character name, stat mini-lists (and inventory)
     :precondition: character must be a properly formatted list
     :postcondition: character name, stats and inventory will be printed
-    """
 
+    # A character with an inventory without items
+    >>> print_character({"Name": "Ophelia", "Class": "monk", "Race": "elf", "HP": [8, 8], "Strength": 3, "Dexterity": 3,
+    ... "Constitution": 3, "Intelligence": 3, "Wisdom": 3, "Charisma": 3, "XP": 0,
+    ... "Inventory": []})
+    Your character's name is Ophelia.
+    <BLANKLINE>
+    Class: monk
+    Race: elf
+    HP: 8/8
+    <BLANKLINE>
+    --Attributes--
+    Strength: 3
+    Dexterity: 3
+    Constitution: 3
+    Intelligence: 3
+    Wisdom: 3
+    Charisma: 3
+    <BLANKLINE>
+    EXP: 0
+    <BLANKLINE>
+    --Inventory--
+    You have no items...
+
+    # A character with an inventory with items
+    >>> print_character({"Name": "Ophelia", "Class": "monk", "Race": "elf", "HP": [8, 8], "Strength": 3, "Dexterity": 3,
+    ... "Constitution": 3, "Intelligence": 3, "Wisdom": 3, "Charisma": 3, "XP": 0,
+    ... "Inventory": ["Boots of Swiftness", "Boots of Alacrity"]})
+    Your character's name is Ophelia.
+    <BLANKLINE>
+    Class: monk
+    Race: elf
+    HP: 8/8
+    <BLANKLINE>
+    --Attributes--
+    Strength: 3
+    Dexterity: 3
+    Constitution: 3
+    Intelligence: 3
+    Wisdom: 3
+    Charisma: 3
+    <BLANKLINE>
+    EXP: 0
+    <BLANKLINE>
+    --Inventory--
+    Boots of Swiftness
+    Boots of Alacrity
+    """
     # Print name, class, race, HP
     print(f"\nYour character's name is {character['Name']}.\n")
     print(f"Class: {character['Class']}")
