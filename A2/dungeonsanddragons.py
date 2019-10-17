@@ -324,7 +324,7 @@ def attack(attacker, target):
 
     roll = roll_die(1, 20)
     if roll > target["Dexterity"]:
-        dmg = roll_die(1, target["HP"][0])
+        dmg = roll_die(1, attacker["HP"][0])
         target["HP"][1] -= dmg
         print("The attack was a success!")
         print(f"{target['Name']} took {dmg} damage.")
