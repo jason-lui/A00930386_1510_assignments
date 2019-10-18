@@ -64,6 +64,11 @@ def choose_inventory(inventory):
         else:
             print("You must enter a number corresponding to an item in the list.\n")
 
+    # Print the final inventory
+    print("--Inventory--")
+    for item in item_list:
+        print(item)
+
     return item_list
 
 
@@ -422,7 +427,7 @@ def main():
                  'Warmog\'s Armor',
                  'Randuin\'s Omen',
                  'Banshee\'s Veil',
-                 'Abyssal\' Mask',
+                 'Abyssal Mask',
                  'Infinity Edge',
                  'The Bloodthirster',
                  'Phantom Dancer',
