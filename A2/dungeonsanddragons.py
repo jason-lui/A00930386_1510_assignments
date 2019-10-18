@@ -183,8 +183,8 @@ def print_character(character):
     <BLANKLINE>
     Your character's name is Ophelia.
     <BLANKLINE>
-    Class: monk
-    Race: elf
+    Class: Monk
+    Race: Elf
     HP: 8/8
     <BLANKLINE>
     --Attributes--
@@ -207,8 +207,8 @@ def print_character(character):
     <BLANKLINE>
     Your character's name is Ophelia.
     <BLANKLINE>
-    Class: monk
-    Race: elf
+    Class: Monk
+    Race: Elf
     HP: 8/8
     <BLANKLINE>
     --Attributes--
@@ -378,15 +378,20 @@ def attack(attacker, target):
     """
     # Check if the attacker is dead
     if attacker["HP"][1] <= 0:
+        print(f"{attacker['Name']} is dead!")
         return
 
     # Print initial HP of the target
     print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}")
 
+    # Calculate damage
     roll = roll_die(1, 20)
     if roll > target["Dexterity"]:
         dmg = roll_die(1, attacker["HP"][0])
-        target["HP"][1] -= dmg
+        if dmg >= target["HP"][1]:
+            target["HP"][1] = 0
+        else:
+            target["HP"][1] -= dmg
         print("The attack was a success!")
         print(f"{target['Name']} took {dmg} damage.")
         if target["HP"][1] <= 0:
