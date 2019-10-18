@@ -5,7 +5,7 @@ from dungeonsanddragons import create_character
 
 class TestCreate_character(TestCase):
 
-    @patch("lab05.roll_die", side_effect=[1, 2, 3, 4, 5, 6])
+    @patch("dungeonsanddragons.roll_die", side_effect=[1, 2, 3, 4, 5, 6])
     @patch("random.choice", side_effect=["b", "a", "d", "e", "h", "i"])
     def test_create_character_1(self, mock_letter, mock_roll):
         syllables = 1
@@ -13,7 +13,7 @@ class TestCreate_character(TestCase):
                               ["Intelligence", 4], ["Wisdom", 5], ["Charisma", 6]]
         self.assertEqual(expected, create_character(syllables))
 
-    @patch("lab05.roll_die", side_effect=[6, 5, 4, 3, 2, 1])
+    @patch("dungeonsanddragons.roll_die", side_effect=[6, 5, 4, 3, 2, 1])
     @patch("random.choice", side_effect=["b", "a", "d", "e", "h", "i"])
     def test_create_character_2(self, mock_letter, mock_roll):
         syllables = 2
@@ -21,7 +21,7 @@ class TestCreate_character(TestCase):
                               ["Intelligence", 3], ["Wisdom", 2], ["Charisma", 1]]
         self.assertEqual(expected, create_character(syllables))
 
-    @patch("lab05.roll_die", side_effect=[3, 6, 9, 12, 15, 18])
+    @patch("dungeonsanddragons.roll_die", side_effect=[3, 6, 9, 12, 15, 18])
     @patch("random.choice", side_effect=["b", "a", "d", "e", "h", "i"])
     def test_create_character_3(self, mock_letter, mock_roll):
         syllables = 3
