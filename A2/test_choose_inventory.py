@@ -1,6 +1,6 @@
 from unittest import TestCase
 from unittest.mock import patch
-from lab05 import choose_inventory
+from dungeonsanddragons import choose_inventory
 import io
 
 
