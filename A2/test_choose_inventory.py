@@ -7,7 +7,7 @@ import io
 class TestChoose_inventory(TestCase):
 
     @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("random.sample", side_effect=[[], [], [], []])
+    @patch("builtins.input", side_effect=[1, 2, 3, 4])
     def test_choose_inventory_0_0(self, mock_items, mock_output):
         inventory = []
         selection = 0

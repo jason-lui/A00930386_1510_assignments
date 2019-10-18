@@ -39,8 +39,8 @@ def choose_inventory(inventory):
     Choose random items from an inventory.
 
     Return an empty list if preconditions are not met.
-    :param inventory: an integer
-    :precondition: inventory must be a positive integer
+    :param inventory: a list of items
+    :precondition: inventory must be a list of items
     :postcondition: a list of random items from the inventory will be generated
     :return: a sorted list of random items
     """
