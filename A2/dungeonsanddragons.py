@@ -39,10 +39,8 @@ def choose_inventory(inventory):
     Choose random items from an inventory.
 
     Return an empty list if preconditions are not met.
-    :param inventory: an integer
-    :param selection: an integer
-    :precondition: inventory must be a positive integer
-    :precondition: selection must be a positive integer
+    :param inventory: a list of items
+    :precondition: inventory must be a list of items
     :postcondition: a list of random items from the inventory will be generated
     :return: a sorted list of random items
     """
@@ -276,8 +274,8 @@ def select_race():
     :postcondition: a race will be selected
     :return: the race as a string in lower case
     """
-    races = ["elf", "halfling", "tiefling", "dragonborn", "dwarf", "gnome", "half-Elf",
-             "halfling", "half-Orc"]
+    races = ["elf", "halfling", "tiefling", "dragonborn", "dwarf", "gnome", "half-elf",
+             "human", "half-Orc"]
     print("Select a race:")
     for i in range(len(races)):
         print(f"{i + 1}. {races[i].title()}")

@@ -1,6 +1,6 @@
 from unittest import TestCase
 from unittest.mock import patch
-from lab05 import print_character
+from dungeonsanddragons import print_character
 import io
 
 

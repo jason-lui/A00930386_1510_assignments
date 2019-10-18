@@ -1,5 +1,5 @@
 from unittest import TestCase
-from lab05 import roll_die
+from dungeonsanddragons import roll_die
 
 
 class TestRoll_die(TestCase):
