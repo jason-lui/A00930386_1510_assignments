@@ -301,6 +301,7 @@ def roll_hp(char_class):
     :postcondition: an HP value for the character's class will be returned
     :return: a list containing the total and current HP as integers
     """
+    hp = 0
     if char_class in ["sorcerer", "wizard"]:
         hp = roll_die(1, 6)
     elif char_class in ["bard", "cleric", "druid", "monk", "rogue", "warlock"]:
