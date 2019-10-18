@@ -283,7 +283,7 @@ def select_race():
     :return: the race as a string in lower case
     """
     races = ["elf", "halfling", "tiefling", "dragonborn", "dwarf", "gnome", "half-elf",
-             "human", "half-Orc"]
+             "human", "half-orc"]
     print("Select a race:")
     for i in range(len(races)):
         print(f"{i + 1}. {races[i].title()}")
