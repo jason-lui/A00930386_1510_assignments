@@ -8,7 +8,6 @@ class TestSelect_class(TestCase):
     @patch("sys.stdout", new_callable=io.StringIO)
     @patch("builtins.input", return_value=1)
     def test_select_class_print(self, mock_class, mock_output):
-        selected_class = "fighter"
         expected = """Select a class:
 1. Fighter
 2. Wizard
