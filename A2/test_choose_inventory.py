@@ -7,75 +7,82 @@ import io
 class TestChoose_inventory(TestCase):
 
     @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("builtins.input", side_effect=[1, 2, 3, 4])
-    def test_choose_inventory_0_0(self, mock_items, mock_output):
-        inventory = []
-        selection = 0
-        expected = []
-        self.assertEqual(expected, choose_inventory(inventory, selection))
-
-    @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("random.sample", side_effect=[[], [], [], []])
-    def test_choose_inventory_4_0(self, mock_items, mock_output):
-        inventory = ['Rabadon\'s Deathcap', 'Abyssal\' Mask', 'Rapidfire Cannon', 'Boots of Lucidity']
-        selection = 0
-        expected = []
-        self.assertEqual(expected, choose_inventory(inventory, selection))
-
-    @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("random.sample", side_effect=[[], [], [], []])
-    def test_choose_inventory_0_n1_value(self, mock_items, mock_output):
-        inventory = []
-        selection = -1
-        expected = []
-        self.assertEqual(expected, choose_inventory(inventory, selection))
-
-    @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("random.sample", side_effect=[[], [], [], []])
-    def test_choose_inventory_0_n1_print(self, mock_items, mock_output):
-        inventory = []
-        selection = -1
-        expected = "WARNING: The number of items selected is negative.\n"
-        choose_inventory(inventory, selection)
+    @patch("builtins.input", side_effect=[1, 2, 3, 4, -1])
+    def test_choose_inventory_4_items(self, mock_items, mock_output):
+        sample = ['Rabadon\'s Deathcap', 'Abyssal\' Mask', 'Rapidfire Cannon', 'Boots of Lucidity']
+        expected = "Welcome to the Olde Tyme Merchant!\n" \
+                   "\n" \
+                   "Here is what we have for sale:\n" \
+                   "--Current Inventory--\n" \
+                   "\n" \
+                   "\n" \
+                   "1. Rabadon\'s Deathcap\n" \
+                   "2. Abyssal\' Mask\n" \
+                   "3. Rapidfire Cannon\n" \
+                   "4. Boots of Lucidity\n" \
+                   "--Current Inventory--\n" \
+                   "Rabadon\'s Deathcap\n" \
+                   "\n" \
+                   "\n" \
+                   "1. Rabadon\'s Deathcap\n" \
+                   "2. Abyssal\' Mask\n" \
+                   "3. Rapidfire Cannon\n" \
+                   "4. Boots of Lucidity\n" \
+                   "--Current Inventory--\n" \
+                   "Rabadon\'s Deathcap\n" \
+                   "Abyssal\' Mask\n" \
+                   "\n" \
+                   "\n" \
+                   "1. Rabadon\'s Deathcap\n" \
+                   "2. Abyssal\' Mask\n" \
+                   "3. Rapidfire Cannon\n" \
+                   "4. Boots of Lucidity\n" \
+                   "--Current Inventory--\n" \
+                   "Rabadon\'s Deathcap\n" \
+                   "Abyssal\' Mask\n" \
+                   "Rapidfire Cannon\n" \
+                   "\n" \
+                   "\n" \
+                   "1. Rabadon\'s Deathcap\n" \
+                   "2. Abyssal\' Mask\n" \
+                   "3. Rapidfire Cannon\n" \
+                   "4. Boots of Lucidity\n" \
+                   "--Current Inventory--\n" \
+                   "Rabadon\'s Deathcap\n" \
+                   "Abyssal\' Mask\n" \
+                   "Rapidfire Cannon\n" \
+                   "Boots of Lucidity\n" \
+                   "\n" \
+                   "\n" \
+                   "1. Rabadon\'s Deathcap\n" \
+                   "2. Abyssal\' Mask\n" \
+                   "3. Rapidfire Cannon\n" \
+                   "4. Boots of Lucidity\n"
+        inventory = choose_inventory(sample)
         self.assertEqual(expected, mock_output.getvalue())
 
     @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("random.sample", side_effect=[[], [], [], []])
-    def test_choose_inventory_4_n1_value(self, mock_items, mock_output):
-        inventory = ['Rabadon\'s Deathcap', 'Abyssal\' Mask', 'Rapidfire Cannon', 'Boots of Lucidity']
-        selection = -1
-        expected = []
-        self.assertEqual(expected, choose_inventory(inventory, selection))
-
-    @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("random.sample", side_effect=[[], [], [], []])
-    def test_choose_inventory_4_n1_print(self, mock_items, mock_output):
-        inventory = ['Rabadon\'s Deathcap', 'Abyssal\' Mask', 'Rapidfire Cannon', 'Boots of Lucidity']
-        selection = -1
-        expected = "WARNING: The number of items selected is negative.\n"
-        choose_inventory(inventory, selection)
+    @patch("builtins.input", side_effect=[5, -1])
+    def test_choose_inventory_error(self, mock_items, mock_output):
+        sample = ['Rabadon\'s Deathcap', 'Abyssal\' Mask', 'Rapidfire Cannon', 'Boots of Lucidity']
+        expected = "Welcome to the Olde Tyme Merchant!\n" \
+                   "\n" \
+                   "Here is what we have for sale:\n" \
+                   "--Current Inventory--\n" \
+                   "\n" \
+                   "\n" \
+                   "1. Rabadon's Deathcap\n" \
+                   "2. Abyssal' Mask\n" \
+                   "3. Rapidfire Cannon\n" \
+                   "4. Boots of Lucidity\n" \
+                   "You must enter a number corresponding to an item in the list.\n" \
+                   "\n" \
+                   "--Current Inventory--\n" \
+                   "\n" \
+                   "\n" \
+                   "1. Rabadon's Deathcap\n" \
+                   "2. Abyssal' Mask\n" \
+                   "3. Rapidfire Cannon\n" \
+                   "4. Boots of Lucidity\n"
+        inventory = choose_inventory(sample)
         self.assertEqual(expected, mock_output.getvalue())
-
-    @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("random.sample", side_effect=[[], [], [], []])
-    def test_choose_inventory_0_4_value(self, mock_items, mock_output):
-        inventory = []
-        selection = 4
-        expected = []
-        self.assertEqual(expected, choose_inventory(inventory, selection))
-
-    @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("random.sample", side_effect=[[], [], [], []])
-    def test_choose_inventory_0_4_print(self, mock_items, mock_output):
-        inventory = []
-        selection = 4
-        expected = "WARNING: The number of items selected is larger than the size of the inventory.\n"
-        choose_inventory(inventory, selection)
-        self.assertEqual(expected, mock_output.getvalue())
-
-    @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("random.sample", side_effect=[['Rapidfire Cannon', 'Boots of Lucidity']])
-    def test_choose_inventory_4_2(self, mock_items, mock_output):
-        inventory = ['Rabadon\'s Deathcap', 'Abyssal\' Mask', 'Rapidfire Cannon', 'Boots of Lucidity']
-        selection = 2
-        self.assertEqual(['Boots of Lucidity', 'Rapidfire Cannon'], choose_inventory(inventory, selection))
