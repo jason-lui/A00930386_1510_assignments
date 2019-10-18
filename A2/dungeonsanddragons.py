@@ -289,7 +289,7 @@ def select_race():
         print(f"{i + 1}. {races[i].title()}")
 
     choice = int(input(f"\nChoose a race (1-{len(races)}): "))
-    choice = races[choice + 1]
+    choice = races[choice - 1]
 
     return choice
 
