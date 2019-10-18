@@ -1,6 +1,6 @@
 from unittest import TestCase
 from unittest.mock import patch
-from lab05 import create_character
+from dungeonsanddragons import create_character
 
 
 class TestCreate_character(TestCase):

@@ -1,5 +1,5 @@
 from unittest import TestCase
-from lab05 import generate_syllable
+from dungeonsanddragons import generate_syllable
 
 vowels = ["a", "e", "i", "o", "u", "y"]
 consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
