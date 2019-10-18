@@ -180,6 +180,7 @@ def print_character(character):
     >>> print_character({"Name": "Ophelia", "Class": "monk", "Race": "elf", "HP": [8, 8], "Strength": 3, "Dexterity": 3,
     ... "Constitution": 3, "Intelligence": 3, "Wisdom": 3, "Charisma": 3, "XP": 0,
     ... "Inventory": []})
+    <BLANKLINE>
     Your character's name is Ophelia.
     <BLANKLINE>
     Class: monk
@@ -203,6 +204,7 @@ def print_character(character):
     >>> print_character({"Name": "Ophelia", "Class": "monk", "Race": "elf", "HP": [8, 8], "Strength": 3, "Dexterity": 3,
     ... "Constitution": 3, "Intelligence": 3, "Wisdom": 3, "Charisma": 3, "XP": 0,
     ... "Inventory": ["Boots of Swiftness", "Boots of Alacrity"]})
+    <BLANKLINE>
     Your character's name is Ophelia.
     <BLANKLINE>
     Class: monk
@@ -225,8 +227,8 @@ def print_character(character):
     """
     # Print name, class, race, HP
     print(f"\nYour character's name is {character['Name']}.\n")
-    print(f"Class: {character['Class']}")
-    print(f"Race: {character['Race']}")
+    print(f"Class: {character['Class'].title()}")
+    print(f"Race: {character['Race'].title()}")
     print(f"HP: {character['HP'][1]}/{character['HP'][0]}\n")
 
     # Print character stats and EXP
@@ -261,12 +263,13 @@ def select_class():
     """
     classes = ["fighter", "wizard", "cleric", "rogue", "ranger", "barbarian", "bard",
                "druid", "monk", "paladin", "sorcerer", "warlock"]
+
     print("Select a class:")
     for i in range(len(classes)):
         print(f"{i + 1}. {classes[i].title()}")
 
     choice = int(input(f"\nChoose a class (1-{len(classes)}): "))
-    choice = classes[choice + 1]
+    choice = classes[choice - 1]
 
     return choice
 
