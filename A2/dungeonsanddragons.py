@@ -355,10 +355,12 @@ def roll_order(bot_1, bot_2):
             order = [bot_1, bot_2]
             print(f"\n{bot_1['Name']} will go first.")
             break
-        elif roll_2 < roll_1:
+        elif roll_2 > roll_1:
             order = [bot_2, bot_1]
             print(f"\n{bot_2['Name']} will go first.")
             break
+        elif roll_1 == roll_2:
+            print(f"Both players rolled {roll_1}! Rolling again...")
 
     return order
 
