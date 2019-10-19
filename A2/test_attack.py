@@ -3,18 +3,6 @@ from unittest.mock import patch
 from dungeonsanddragons import attack
 import io
 
-player_1 = {"Name": "Ophelia", "Class": "monk", "Race": "elf", "HP": [8, 8], "Strength": 3, "Dexterity": 3,
-            "Constitution": 3, "Intelligence": 3, "Wisdom": 3, "Charisma": 3, "XP": 0,
-            "Inventory": ["Boots of Swiftness", "Boots of Alacrity"]}
-
-player_2 = {"Name": "Peachy", "Class": "monk", "Race": "elf", "HP": [8, 4], "Strength": 3, "Dexterity": 3,
-            "Constitution": 3, "Intelligence": 3, "Wisdom": 3, "Charisma": 3, "XP": 0,
-            "Inventory": ["Boots of Swiftness", "Boots of Alacrity"]}
-
-player_3 = {"Name": "Blake", "Class": "sorcerer", "Race": "human", "HP": [6, 0], "Strength": 3, "Dexterity": 3,
-            "Constitution": 3, "Intelligence": 3, "Wisdom": 3, "Charisma": 3, "XP": 0,
-            "Inventory": ["Boots of Swiftness", "Boots of Alacrity"]}
-
 
 class TestAttack(TestCase):
 
