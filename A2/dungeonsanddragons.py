@@ -388,10 +388,7 @@ def attack(attacker, target):
     roll = roll_die(1, 20)
     if roll > target["Dexterity"]:
         dmg = roll_die(1, attacker["HP"][0])
-        if dmg >= target["HP"][1]:
-            target["HP"][1] = 0
-        else:
-            target["HP"][1] -= dmg
+        target["HP"][1] -= dmg
         print("The attack was a success!")
         print(f"{target['Name']} took {dmg} damage.")
         if target["HP"][1] <= 0:
@@ -400,7 +397,8 @@ def attack(attacker, target):
         print(f"{attacker['Name']}'s attack failed!")
 
     # Print remaining HP of the target
-    print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}\n")
+    if target["HP"][1] > 0:
+        print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}\n")
 
     return
 
