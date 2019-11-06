@@ -1,5 +1,5 @@
 from unittest import TestCase
-from dungeonsanddragons import roll_hp
+from sud import roll_hp
 
 
 squishy = ["sorcerer", "wizard"]

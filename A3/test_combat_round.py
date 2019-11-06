@@ -1,13 +1,13 @@
 from unittest import TestCase
 from unittest.mock import patch
-from dungeonsanddragons import combat_round
+from sud import combat_round
 import io
 
 
 class TestCombat_round(TestCase):
 
     @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("dungeonsanddragons.roll_die", side_effect=[20, 1, 1, 1])
+    @patch("sud.roll_die", side_effect=[20, 1, 1, 1])
     def test_combat_round_double_fail(self, mock_roll, mock_output):
         player_1 = {"Name": "Ophelia", "Class": "monk", "Race": "elf", "HP": [8, 8], "Strength": 3, "Dexterity": 3,
                     "Constitution": 3, "Intelligence": 3, "Wisdom": 3, "Charisma": 3, "XP": 0,

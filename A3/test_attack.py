@@ -1,13 +1,13 @@
 from unittest import TestCase
 from unittest.mock import patch
-from dungeonsanddragons import attack
+from sud import attack
 import io
 
 
 class TestAttack(TestCase):
 
     @patch("sys.stdout", new_callable=io.StringIO)
-    @patch("dungeonsanddragons.roll_die", return_value=1)
+    @patch("sud.roll_die", return_value=1)
     def test_attack_hp_below_0(self, mock_roll, mock_output):
         player_1 = {"Name": "Ophelia", "Class": "monk", "Race": "elf", "HP": [8, 8], "Strength": 3, "Dexterity": 3,
                     "Constitution": 3, "Intelligence": 3, "Wisdom": 3, "Charisma": 3, "XP": 0,
