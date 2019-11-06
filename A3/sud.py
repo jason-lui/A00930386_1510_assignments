@@ -66,30 +66,24 @@ def attack(attacker, target):
     :precondition: target must be a properly formatted character
     :postcondition: the attacker will try to attack the target
     """
-    # Check if the attacker is dead
-    if attacker["HP"][1] <= 0:
+    if attacker["HP"][1] <= 0:  # Check if the attacker is dead
         print(f"{attacker['Name']} is dead!")
         return
 
-    # Print initial HP of the target
-    print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}")
+    print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}")  # Print initial HP of the target
 
-    # Calculate damage
     roll = roll_die(1, 20)
     if roll > target["Dexterity"]:
-        dmg = roll_die(1, attacker["HP"][0])
+        dmg = roll_die(1, attacker["HP"][0])  # Calculate damage
         target["HP"][1] -= dmg
-        print("The attack was a success!")
-        print(f"{target['Name']} took {dmg} damage.")
+        print(f"The attack was a success!\n{target['Name']} took {dmg} damage.")
         if target["HP"][1] <= 0:
             print(f"{target['Name']} has died!")
     else:
         print(f"{attacker['Name']}'s attack failed!")
-
     # Print remaining HP of the target
     if target["HP"][1] > 0:
         print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}\n")
-
     return
 
 
