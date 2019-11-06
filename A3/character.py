@@ -1,6 +1,17 @@
 import doctest
 
 
+def make_character() -> dict:
+    """
+    Create a dictionary that stores a tuple representing the character's location in the maze.
+
+    :postcondition: a character containing (0, 0) will be created
+    :return: a dictionary containing the location (0, 0) of the character
+    """
+    char_info = {'coords': (0, 0)}
+    return char_info
+
+
 def create_character():
     """
     Generate a character with 10 HP.
@@ -13,6 +24,31 @@ def create_character():
     char_info["HP"] = 10
     char_info["Power"] = 6
     return char_info
+
+
+def move_character(character: dict, move: tuple) -> dict:
+    """
+    Move a character 1 space on the board.
+
+    :param character: a dictionary
+    :param move: a string
+    :precondition: character must be a dictionary containing the character's coordinates
+    :precondition: move must be a string representing a cardinal direction
+    :return: a dictionary containing the updated coordinates
+
+    >>> move_character({'coords': (0, 0)}, (0, 1))
+    {'coords': (0, 1)}
+    >>> move_character({'coords': (0, 0)}, (1, 0))
+    {'coords': (1, 0)}
+    >>> move_character({'coords': (1, 1)}, (0, -1))
+    {'coords': (1, 0)}
+    >>> move_character({'coords': (1, 1)}, (-1, 0))
+    {'coords': (0, 1)}
+    """
+    x = character['coords'][0] + move[0]
+    y = character['coords'][1] + move[1]
+    character['coords'] = (x, y)
+    return character
 
 
 if __name__ == '__main__':
