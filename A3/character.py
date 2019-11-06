@@ -1,17 +1,6 @@
 import doctest
 
 
-def make_character() -> dict:
-    """
-    Create a dictionary that stores a tuple representing the character's location in the maze.
-
-    :postcondition: a character containing (0, 0) will be created
-    :return: a dictionary containing the location (0, 0) of the character
-    """
-    char_info = {'coords': (0, 0)}
-    return char_info
-
-
 def create_character():
     """
     Generate a character with 10 HP.
@@ -21,8 +10,9 @@ def create_character():
     """
     char_info = {}
 
-    char_info["HP"] = 10
-    char_info["Power"] = 6
+    char_info['coords'] = 10
+    char_info['HP'] = 10
+    char_info['Power'] = 6
     return char_info
 
 
