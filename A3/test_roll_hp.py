@@ -1,11 +1,11 @@
 from unittest import TestCase
 from sud import roll_hp
 
-
 squishy = ["sorcerer", "wizard"]
 light = ["bard", "cleric", "druid", "monk", "rogue", "warlock"]
 medium = ["fighter", "paladin", "ranger"]
 heavy = ["barbarian"]
+
 
 class TestRoll_hp(TestCase):
 
