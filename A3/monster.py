@@ -10,7 +10,7 @@ def monster():
     """
     monster_info = {}
 
-    monster_info["HP"] = 10
-    monster_info["Power"] = 6
-    monster_info["Backstab"] = 4
+    monster_info['HP'] = 10
+    monster_info['Power'] = 6
+    monster_info['Backstab'] = 4
     return monster_info
