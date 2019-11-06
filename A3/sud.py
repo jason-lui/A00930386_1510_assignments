@@ -72,15 +72,16 @@ def attack(attacker, target):
 
     print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}")  # Print initial HP of the target
 
-    roll = roll_die(1, 20)
-    if roll > target["Dexterity"]:
+    roll = roll_die(1, 4)
+    if roll == 4:
+        print(f"{attacker['Name']}'s attack failed!")
+    else:
         dmg = roll_die(1, attacker["HP"][0])  # Calculate damage
         target["HP"][1] -= dmg
         print(f"The attack was a success!\n{target['Name']} took {dmg} damage.")
         if target["HP"][1] <= 0:
             print(f"{target['Name']} has died!")
-    else:
-        print(f"{attacker['Name']}'s attack failed!")
+
     # Print remaining HP of the target
     if target["HP"][1] > 0:
         print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}\n")
