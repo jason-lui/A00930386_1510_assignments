@@ -12,7 +12,7 @@ def create_character():
 
     char_info['Name'] = "Link"
     char_info['coords'] = 10
-    char_info['HP'] = 10
+    char_info['HP'] = [10, 10]
     char_info['Power'] = 6
     return char_info
 
