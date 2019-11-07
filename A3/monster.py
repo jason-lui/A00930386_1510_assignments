@@ -1,7 +1,7 @@
 import doctest
 
 
-def monster():
+def create_monster():
     """
     Generate a monster with 5 HP.
 

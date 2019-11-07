@@ -1,5 +1,34 @@
 import random
 import doctest
+import character
+import monster
+
+
+def game():
+    """
+    Run the maze game until an exit has been found.
+    """
+    # Initial game state
+    char = character.create_character()
+    game_board = update_board(char)
+    found_exit = False
+
+    # Infinite loop for character movement
+    while not found_exit:
+        # Tell the user where they are
+        print_board(game_board)
+
+        # Get user input and validate input
+        direction = get_user_choice()
+        valid_move = validate_move(game_board, char, direction)
+        if valid_move:
+            # Move character and validate exit conditions
+            character.move_character(char, direction)
+            game_board = update_board(char)
+            encounter = monster.create_monster()
+            combat_round(char, encounter)
+        else:
+            print("You can't go in that direction!")
 
 
 def roll_die(number_of_rolls, number_of_sides):
@@ -46,14 +75,12 @@ def combat_round(opponent_one, opponent_two):
     :precondition: opponent_two must be a properly formatted character
     :postcondition: a battle will be simulated
     """
-    # Roll for attacking order
-    order = roll_order(opponent_one, opponent_two)
+    while opponent_one["HP"][1] > 0 and opponent_two["HP"][1] > 0:  # While both players are alive
+        order = roll_order(opponent_one, opponent_two)  # Roll for attacking order
 
-    # Characters attack each other
-    attack(order[0], order[1])
-    attack(order[1], order[0])
-
-    return
+        # Characters attack each other
+        attack(order[0], order[1])
+        attack(order[1], order[0])
 
 
 def attack(attacker, target):
@@ -76,7 +103,7 @@ def attack(attacker, target):
     if roll == 4:
         print(f"{attacker['Name']}'s attack failed!")
     else:
-        dmg = roll_die(1, attacker["HP"][0])  # Calculate damage
+        dmg = roll_die(1, attacker["Power"])  # Calculate damage
         target["HP"][1] -= dmg
         print(f"The attack was a success!\n{target['Name']} took {dmg} damage.")
         if target["HP"][1] <= 0:
@@ -85,7 +112,6 @@ def attack(attacker, target):
     # Print remaining HP of the target
     if target["HP"][1] > 0:
         print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}\n")
-    return
 
 
 def roll_order(bot_1, bot_2):
@@ -107,45 +133,13 @@ def roll_order(bot_1, bot_2):
         if roll_1 > roll_2:
             order = [bot_1, bot_2]
             print(f"\n{bot_1['Name']} will go first.")
-            break
+            return order
         elif roll_2 > roll_1:
             order = [bot_2, bot_1]
             print(f"\n{bot_2['Name']} will go first.")
-            break
+            return order
         elif roll_1 == roll_2:
             print(f"Both players rolled {roll_1}! Rolling again...")
-
-    return order
-
-
-def game():
-    """
-    Run the maze game until an exit has been found.
-    """
-    # Initial game state
-    char = make_character()
-    game_board = update_board(char)
-    found_exit = False
-    number_of_moves = 0
-
-    # Infinite loop for character movement
-    while not found_exit:
-        # Tell the user where they are
-        print_board(game_board)
-
-        # Get user input and validate input
-        direction = get_user_choice()
-        valid_move = validate_move(game_board, char, direction)
-
-        if valid_move:
-            # Move character and validate exit conditions
-            move_character(char, direction)
-            found_exit = check_if_exit_reached(char)
-            game_board = update_board(char)
-            number_of_moves += 1
-        else:
-            print("You can't go in that direction!")
-    print(f"It took you {number_of_moves} moves to reach the exit.")
 
 
 def make_board() -> list:
@@ -157,7 +151,6 @@ def make_board() -> list:
     :return: a list of lists of ints representing a 5x5 board
     """
     board = [[0] * 5 for i in range(5)]
-    board[-1][-1] += 2
     return board
 
 
@@ -249,22 +242,6 @@ def validate_move(board: list, character: dict, move: tuple) -> bool:
     x = character['coords'][0] + move[0]
     y = character['coords'][1] + move[1]
     return True if ((0 <= x <= len(board) - 1) and (0 <= y <= len(board[1]) - 1)) else False
-
-
-def check_if_exit_reached(character: dict) -> bool:
-    """
-    Determine if the character is at the exit
-
-    :param character: a dictionary
-    :precondition: character must be a dictionary containing the character's coordinates
-    :return: True or False depending on the character's location
-
-    >>> check_if_exit_reached({'coords': (0, 0)})
-    False
-    >>> check_if_exit_reached({'coords': (4, 4)})
-    True
-    """
-    return True if character['coords'] == (4, 4) else False
 
 
 def main():
