@@ -11,16 +11,19 @@ def game():
     # Initial game state
     char = character.create_character()
     game_board = update_board(char)
-    found_exit = False
+    monsters_killed = 0
 
     # Infinite loop for character movement
-    while not found_exit:
+    while True:
         # Tell the user where they are
         print_board(game_board)
 
         # Get user input and validate input
         direction = get_user_choice()
+        if direction == 'quit':
+            break
         valid_move = validate_move(game_board, char, direction)
+
         if valid_move:
             # Move character and validate exit conditions
             character.move_character(char, direction)
@@ -29,7 +32,7 @@ def game():
             combat_round(char, encounter)
         else:
             print("You can't go in that direction!")
-
+    print(f"You killed {monsters_killed} monsters.")
 
 def roll_die(number_of_rolls, number_of_sides):
     """
@@ -209,14 +212,14 @@ def get_user_choice() -> tuple:
     :postcondition: the user's choice as a tuple containing coords of an xy-plane
     :return: the user's choice as a tuple
     """
-    move_coords = {'1': (0, -1), '2': (1, 0), '3': (0, 1), '4': (-1, 0)}
+    move_coords = {'1': (0, -1), '2': (1, 0), '3': (0, 1), '4': (-1, 0), '5': 'quit'}
 
     print("Where would you like to move?")
-    print("1. North, 2. East, 3. South, 4. West")
-    choice = input("Enter your move (1-4): ")
+    print("1. North, 2. East, 3. South, 4. West or 5. Quit")
+    choice = input("Enter your move (1-5): ")
     while choice not in move_coords.keys():
         print("That is not a valid move.")
-        choice = input("Choose a number between 1 and 4: ")
+        choice = input("Choose a number between 1 and 5: ")
     print('')
     return move_coords[choice]
 
