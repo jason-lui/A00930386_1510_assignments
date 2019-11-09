@@ -12,8 +12,9 @@ def create_character():
 
     char_info['Name'] = "Link"
     char_info['coords'] = 10
-    char_info['HP'] = [10, 10]
-    char_info['Power'] = 6
+    char_info['max_hp'] = 10
+    char_info['current_hp'] = 10
+    char_info['power'] = 6
     return char_info
 
 
