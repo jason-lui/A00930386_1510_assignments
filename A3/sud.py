@@ -13,26 +13,23 @@ def game():
     game_board = update_board(char)
     monsters_killed = 0
 
-    # Infinite loop for character movement
     while True:
-        # Tell the user where they are
-        print_board(game_board)
-
-        # Get user input and validate input
-        direction = get_user_choice()
+        print_board(game_board)  # Tell the user where they are
+        direction = get_user_choice()  # Get user input and validate input
         if direction == 'quit':
             break
-        valid_move = validate_move(game_board, char, direction)
 
-        if valid_move:
+        if validate_move(game_board, char, direction):
             # Move character and validate exit conditions
             character.move_character(char, direction)
             game_board = update_board(char)
             encounter = monster.create_monster()
-            combat_round(char, encounter)
+            monsters_killed += combat_round(char, encounter)
         else:
             print("You can't go in that direction!")
+
     print(f"You killed {monsters_killed} monsters.")
+
 
 def roll_die(number_of_rolls, number_of_sides):
     """
@@ -66,24 +63,25 @@ def roll_die(number_of_rolls, number_of_sides):
     return total
 
 
-def combat_round(opponent_one, opponent_two):
+def combat_round(your_char, enemy):
     """
     Simulate one round of combat between characters.
 
     Players will to determine attacking order.
     Each character attacks once.
-    :param opponent_one: a character
-    :param opponent_two: a character
+    :param your_char: a character
+    :param enemy: a character
     :precondition: opponent_one must be a properly formatted character
     :precondition: opponent_two must be a properly formatted character
     :postcondition: a battle will be simulated
     """
-    while opponent_one["HP"][1] > 0 and opponent_two["HP"][1] > 0:  # While both players are alive
-        order = roll_order(opponent_one, opponent_two)  # Roll for attacking order
+    while your_char["HP"][1] > 0 and enemy["HP"][1] > 0:  # While both players are alive
+        order = roll_order(your_char, enemy)  # Roll for attacking order
 
         # Characters attack each other
         attack(order[0], order[1])
         attack(order[1], order[0])
+    
 
 
 def attack(attacker, target):
