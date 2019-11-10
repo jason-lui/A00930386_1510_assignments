@@ -45,9 +45,11 @@ def move_character(character: dict, move: tuple) -> dict:
 
 def regen_hp(char):
     """
+    Adds 2 HP to the character's current HP.
 
-    :param char:
-    :return:
+    :param char: a character
+    :precondition: char must be a character
+    :postcondition: the char will be healed 2 HP
     """
     print("You recovered 2 HP.")
     char['current_hp'] = min(10, char['current_hp'] + 2)
