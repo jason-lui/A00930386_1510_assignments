@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import patch
 import io
-from maze import get_user_choice
+from sud import get_user_choice
 
 
 class TestGet_user_choice(TestCase):
@@ -10,7 +10,7 @@ class TestGet_user_choice(TestCase):
     @patch("builtins.input", side_effect=["1"])
     def test_get_user_choice_valid_print(self, mock_input, mock_output):
         expected = """Where would you like to move?
-1. North, 2. East, 3. South, 4. West
+1. North, 2. East, 3. South, 4. West or 5. Quit
 
 """
         get_user_choice()
@@ -20,7 +20,7 @@ class TestGet_user_choice(TestCase):
     @patch("builtins.input", side_effect=["c", "1"])
     def test_get_user_choice_invalid_print(self, mock_input, mock_output):
         expected = """Where would you like to move?
-1. North, 2. East, 3. South, 4. West
+1. North, 2. East, 3. South, 4. West or 5. Quit
 That is not a valid move.
 
 """
