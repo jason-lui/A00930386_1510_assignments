@@ -1,5 +1,5 @@
-import doctest
 import random
+
 
 def create_monster():
     """
