@@ -26,8 +26,8 @@ class TestGame(TestCase):
     @patch("sys.stdout", new_callable=io.StringIO)
     @patch("builtins.input", side_effect=['5'])
     def test_game_instantly_quit(self, mock_input, mock_output):
-        expected = "You wake up. You realize that you are in a maze of some " \
-                   "sort. There are 2 doorways in this room: south and east.\n" \
+        expected = "You wake up. You realize that you are in a maze of some sort. There are 2 " \
+                   "\ndoorways in this room: south and east.\n\n" \
                    "1 0 0 0 0\n" \
                    "0 0 0 0 0\n" \
                    "0 0 0 0 0\n" \
@@ -45,8 +45,9 @@ class TestGame(TestCase):
     @patch("sud.roll_die", side_effect=[4, 20, 1, 4, 3, 10])
     @patch("builtins.input", side_effect=['2', '1'])
     def test_game_instantly_die(self, mock_input, mock_roll, mock_int, mock_output):
-        expected = "You wake up. You realize that you are in a maze of " \
-                   "some sort. There are 2 doorways in this room: south and east.\n" \
+        expected = "You wake up. You realize that you are in a maze of some sort. There are 2 \n" \
+                   "doorways in this room: south and east.\n" \
+                   "\n" \
                    "1 0 0 0 0\n" \
                    "0 0 0 0 0\n" \
                    "0 0 0 0 0\n" \
@@ -55,7 +56,9 @@ class TestGame(TestCase):
                    "Where would you like to move?\n" \
                    "1. North, 2. East, 3. South, 4. West or 5. Quit\n" \
                    "\n" \
-                   "You find a treasure chest in this room. You open the chest. Only a few gold coins... Bummer.\n" \
+                   "You find a treasure chest in this room. You open the chest. Only a few gold \n" \
+                   "coins... Bummer.\n" \
+                   "\n" \
                    "You encountered a Goblin!\n" \
                    "What would you like to do?\n" \
                    "\n" \
@@ -79,8 +82,9 @@ class TestGame(TestCase):
     @patch("sud.roll_die", side_effect=[4, 20, 1, 3, 6, 4, 20, 1, 4, 3, 10])
     @patch("builtins.input", side_effect=['2', '1', '2', '1'])
     def test_game_kill_1_and_then_die(self, mock_input, mock_roll, mock_int, mock_output):
-        expected = "You wake up. You realize that you are in a maze of some sort. " \
-                   "There are 2 doorways in this room: south and east.\n" \
+        expected = "You wake up. You realize that you are in a maze of some sort. There are 2 " \
+                   "\ndoorways in this room: south and east.\n" \
+                   "\n" \
                    "1 0 0 0 0\n" \
                    "0 0 0 0 0\n" \
                    "0 0 0 0 0\n" \
@@ -89,7 +93,9 @@ class TestGame(TestCase):
                    "Where would you like to move?\n" \
                    "1. North, 2. East, 3. South, 4. West or 5. Quit\n" \
                    "\n" \
-                   "You find a treasure chest in this room. You open the chest. Only a few gold coins... Bummer.\n" \
+                   "You find a treasure chest in this room. You open the chest. Only a few gold \n" \
+                   "coins... Bummer.\n" \
+                   "\n" \
                    "You encountered a Goblin!\n" \
                    "What would you like to do?\n" \
                    "\n" \
@@ -109,8 +115,9 @@ class TestGame(TestCase):
                    "Where would you like to move?\n" \
                    "1. North, 2. East, 3. South, 4. West or 5. Quit\n" \
                    "\n" \
-                   "You decide to continue on the top side of the maze. You find some " \
-                   "writing on the wall. It says \"The exit is at (4, ...\". You can't make out the rest.\n" \
+                   "You decide to continue on the top side of the maze. You find some writing on the " \
+                   "\nwall. It says \"The exit is at (4, ...\". You can't make out the rest.\n" \
+                   "\n" \
                    "You encountered a Goomba!\n" \
                    "What would you like to do?\n" \
                    "\n" \
