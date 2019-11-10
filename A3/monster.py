@@ -8,12 +8,14 @@ def create_monster():
     :postcondition: a monster with 5 HP will be generated as a dictionary
     :return: a monster with 5 HP represented as a dictionary
     """
-    mob_list = ['Goblin', 'Goomba', 'Minion', 'Bandit', 'Highwayman', 'Troll']
+
+    mob_dict = {1: 'Goblin', 2: 'Goomba', 3: 'Minion', 4: 'Bandit', 5: 'Highwayman', 6: 'Troll'}
+    num = random.randint(1, len(mob_dict))
     monster_info = {}
 
-    monster_info['name'] = random.choice(mob_list)
-    monster_info['max_hp'] = 10
-    monster_info['current_hp'] = 10
+    monster_info['name'] = mob_dict[num]
+    monster_info['max_hp'] = 5
+    monster_info['current_hp'] = 5
     monster_info['power'] = 6
     monster_info['backstab'] = 4
     return monster_info
