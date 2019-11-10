@@ -8,27 +8,29 @@ def game():
     """
     Run the maze game until an exit has been found.
     """
-    # Initial game state
     char = character.create_character()
     game_board = update_board(char)
     monsters_killed = 0
 
-    while True:
+    while char['current_hp'] > 0:
         print_board(game_board)  # Tell the user where they are
         direction = get_user_choice()  # Get user input and validate input
         if direction == 'quit':
             break
 
         if validate_move(game_board, char, direction):
-            # Move character and validate exit conditions
             character.move_character(char, direction)
             game_board = update_board(char)
-            encounter = monster.create_monster()
-            monsters_killed += combat_round(char, encounter)
+            if roll_die(1, 4) == 4:
+                encounter = monster.create_monster()
+                monsters_killed += combat_round(char, encounter)
+            else:
+                character.regen_hp(char)
+            print(f"HP: {char['current_hp']}/{char['max_hp']}")
         else:
             print("You can't go in that direction!")
 
-    print(f"You killed {monsters_killed} monsters.")
+    print(f"You killed {monsters_killed} monsters before you died.")
 
 
 def roll_die(number_of_rolls, number_of_sides):
@@ -75,13 +77,27 @@ def combat_round(your_char, enemy):
     :precondition: opponent_two must be a properly formatted character
     :postcondition: a battle will be simulated
     """
-    while your_char["HP"][1] > 0 and enemy["HP"][1] > 0:  # While both players are alive
-        order = roll_order(your_char, enemy)  # Roll for attacking order
-
-        # Characters attack each other
-        attack(order[0], order[1])
-        attack(order[1], order[0])
-    
+    print(f"You encountered a {enemy['name']}!\nWhat would you like to do?")
+    choice = int(input("1. Fight, 2. Flee:\n"))
+    while choice not in [1, 2]:
+        choice = int(input("That is not a valid decision. Choose 1 or 2:\n"))
+    if choice == 1:  # Fight
+        while your_char["current_hp"] > 0 and enemy["current_hp"] > 0:  # While both fighters are alive
+            order = roll_order(your_char, enemy)  # Roll for attacking order
+            attack(order[0], order[1])  # Characters attack each other
+            attack(order[1], order[0])
+        if enemy['current_hp'] <= 0:
+            print(f"You killed {enemy['name']}!\n")
+    else:  # choice == 2, Flee
+        if roll_die(1, 4) == 4:
+            dmg = roll_die(1, enemy['backstab'])
+            your_char['current_hp'] = max(0, your_char['current_hp'] - dmg)
+            print(f"{enemy['name']} backstabbed you for {dmg} damage!")
+        else:  # Enemy died
+            print(f"You ran away from {enemy['name']} successfully.")
+    if your_char['current_hp'] <= 0:  # You died
+        print("You died. Game over.")
+    return 1 if your_char['current_hp'] > 0 else 0
 
 
 def attack(attacker, target):
@@ -94,35 +110,33 @@ def attack(attacker, target):
     :precondition: target must be a properly formatted character
     :postcondition: the attacker will try to attack the target
     """
-    if attacker["HP"][1] <= 0:  # Check if the attacker is dead
-        print(f"{attacker['Name']} is dead!")
+    if attacker['current_hp'] <= 0:  # Check if the attacker is dead
         return
 
-    print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}")  # Print initial HP of the target
-
+    print(f"{target['name']}'s HP: {target['current_hp']}/{target['max_hp']}")  # Print initial HP of the target
     roll = roll_die(1, 4)
     if roll == 4:
-        print(f"{attacker['Name']}'s attack failed!")
+        print(f"{attacker['name']}'s attack failed!")
     else:
-        dmg = roll_die(1, attacker["Power"])  # Calculate damage
-        target["HP"][1] -= dmg
-        print(f"The attack was a success!\n{target['Name']} took {dmg} damage.")
-        if target["HP"][1] <= 0:
-            print(f"{target['Name']} has died!")
+        dmg = roll_die(1, attacker["power"])  # Calculate damage
+        target['current_hp'] = max(0, target['current_hp'] - dmg)
+        print(f"The attack was a success!\n{target['name']} took {dmg} damage.")
+        if target['current_hp'] <= 0:
+            print(f"{target['name']} has died!")
 
     # Print remaining HP of the target
-    if target["HP"][1] > 0:
-        print(f"{target['Name']}'s HP: {target['HP'][1]}/{target['HP'][0]}\n")
+    if target['current_hp'] > 0:
+        print(f"{target['name']}'s HP: {target['current_hp']}/{target['max_hp']}\n")
 
 
-def roll_order(bot_1, bot_2):
+def roll_order(char_1, char_2):
     """
     Determine the attacking order for a battle round in Dungeons and Dragons.
 
     Each character rolls 1d20 and the higher roll goes first.
     Rolls until an order is determined.
-    :param bot_1: a character
-    :param bot_2: a character
+    :param char_1: a character
+    :param char_2: a character
     :precondition: bot_1 must be a properly formatted character
     :precondition: bot_2 must be a properly formatted character
     :postcondition: the attacking order will be determined
@@ -132,12 +146,12 @@ def roll_order(bot_1, bot_2):
         roll_1 = roll_die(1, 20)
         roll_2 = roll_die(1, 20)
         if roll_1 > roll_2:
-            order = [bot_1, bot_2]
-            print(f"\n{bot_1['Name']} will go first.")
+            order = [char_1, char_2]
+            print(f"\n{char_1['name']} will go first.")
             return order
         elif roll_2 > roll_1:
-            order = [bot_2, bot_1]
-            print(f"\n{bot_2['Name']} will go first.")
+            order = [char_2, char_1]
+            print(f"\n{char_2['name']} will go first.")
             return order
         elif roll_1 == roll_2:
             print(f"Both players rolled {roll_1}! Rolling again...")
@@ -190,17 +204,77 @@ def update_board(character: dict) -> list:
     :precondition: board must be a list of lists of int representing the board
     :postcondition: the board will be updated with the character's current position
     :return: the updated board as a list of lists
-
-    >>> update_board({'coords': (0, 0)})
-    [[1, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 2]]
-    >>> update_board({'coords': (1, 1)})
-    [[0, 0, 0, 0, 0], [0, 1, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 2]]
     """
     board = make_board()
     x, y = character['coords'][0], character['coords'][1]
     board[y][x] = 1
+    describe(character)
 
     return board
+
+
+def describe(my_char):
+    """
+
+    :param my_char:
+    :return:
+    """
+    board_descriptions = {(0, 0): 'You wake up. You realize that you are in a maze of some sort. There are 2 doorways '
+                                  'in this room: south and east.',
+                          (0, 1): 'You enter a dimly lit room. You see some symbols on the wall and a broken sword.',
+                          (0, 2): 'You slowly walk into a room. There was a trap hole! You narrowly avoid it. Phew!',
+                          (0, 3): 'You find a room with some rats. Despite being rats, they\'re quite friendly.',
+                          (0, 4): 'You are the corner of the maze. Nothing interesting here.',
+                          (1, 0): 'You find a treasure chest in this room. You open the chest. Only a few gold '
+                                  'coins... Bummer.',
+                          (1, 1): 'You find a treasure chest in this room. You open the chest. You find a new car! '
+                                  'You don\'t have your license though.',
+                          (1, 2): 'You find a treasure chest in this room. You open the chest. You find purpose in '
+                                  'life. Wow, that was deep!',
+                          (1, 3): 'You find a treasure chest in this room. You open the chest. Empty... Rats!',
+                          (1, 4): 'You find a treasure chest in this room. You open the chest. It\'s full of treasure! '
+                                  'Gems, jewellery, gold bars, doubloons, and trinkets. How lucky!',
+                          (2, 0): 'You decide to continue on the top side of the maze. You find some writing on the '
+                                  'wall. It says "The exit is at (4, ...". You can\'t make out the rest.',
+                          (2, 1): 'You enter a room with a table with bread and water. The bread looks stale, but the '
+                                  'water is clean... or at least you think it is. You eat the bread anyways and you '
+                                  'take a mouthful of water.',
+                          (2, 2): 'You are at the center of maze now. You see a skeleton with a book next to it. '
+                                  'You open the book. In large sans serif font "DO YOUR UNIT TESTS OR YOU WILL '
+                                  'END UP LIKE ME". Yeesh! You drop the book.',
+                          (2, 3): 'You enter a room with some lit candles. These candles look like they\'ve been '
+                                  'burning for a while now.',
+                          (2, 4): 'You walk along the east side of the maze. You hear a noise that sounds like '
+                                  'chatting. You wonder if someone else is in here with you.',
+                          (3, 0): 'You walk along the west side of the maze. You see a window to the outside world. '
+                                  'You try to squeeze through the window. You\'re too big to make it through. Darn it! '
+                                  'You shouldn\'t have eaten so many donuts.',
+                          (3, 1): 'You fall into a trap hole! You feel around the dark for anything to climb on. '
+                                  'You press a button that drops a rope down from the ceiling. You climb out of the '
+                                  'pit. Phew that was close.',
+                          (3, 2): 'You step on a pressure plate as your enter this room. A large boulder falls from '
+                                  'the ceiling. Oh no! You narrowly evade the falling boulder. Phew that was a close '
+                                  'one.',
+                          (3, 3): 'You enter a bedroom. You see a large comfy bed. You decide to take a nap in it. '
+                                  'You sleep for a bit and wake up refreshed.',
+                          (3, 4): 'You enter a room with a black cat. He\'s friendly. He nudges against you, purring. '
+                                  'You wonder whose cat this is.',
+                          (4, 0): 'You\'re at the southwest corner of the maze. Nothing interesting here.',
+                          (4, 1): 'You walk along the south side of the maze. You feel like the exit is near. '
+                                  'You get careless and walk into a spiderweb. AH! You hate spiders.',
+                          (4, 2): 'You walk along the south side of the maze. You feel a light breeze. You think the '
+                                  'exit might be nearby. You look at your surroundings. You see a mirror. You see '
+                                  'your reflection. You see a face that you don\'t recognize. You look muscular and '
+                                  'manly. You realize you\'re not in your own body. You think about how you will '
+                                  'explain this to your friends and family.',
+                          (4, 3): 'You enter a room full of skeletons. You wonder what happened to these people. '
+                                  'You see a note on the floor. You read the note. "Watch out for the Goblins". '
+                                  'You see the exit of the maze to your east.',
+                          (4, 4): 'You find yourself in an open field. The grass is thick. You look around to see if '
+                                  'there are any signs of civilization. No luck.'}
+    key = my_char['coords']
+    print(board_descriptions[key])
+
 
 
 def get_user_choice() -> tuple:
@@ -214,10 +288,10 @@ def get_user_choice() -> tuple:
 
     print("Where would you like to move?")
     print("1. North, 2. East, 3. South, 4. West or 5. Quit")
-    choice = input("Enter your move (1-5): ")
+    choice = input("Enter your move (1-5):\n")
     while choice not in move_coords.keys():
         print("That is not a valid move.")
-        choice = input("Choose a number between 1 and 5: ")
+        choice = input("Choose a number between 1 and 5:\n")
     print('')
     return move_coords[choice]
 

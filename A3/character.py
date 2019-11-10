@@ -10,8 +10,8 @@ def create_character():
     """
     char_info = {}
 
-    char_info['Name'] = "Link"
-    char_info['coords'] = 10
+    char_info['name'] = "Link"
+    char_info['coords'] = (0, 0)
     char_info['max_hp'] = 10
     char_info['current_hp'] = 10
     char_info['power'] = 6
@@ -41,6 +41,16 @@ def move_character(character: dict, move: tuple) -> dict:
     y = character['coords'][1] + move[1]
     character['coords'] = (x, y)
     return character
+
+
+def regen_hp(char):
+    """
+
+    :param char:
+    :return:
+    """
+    print("You recovered 2 HP.")
+    char['current_hp'] = min(10, char['current_hp'] + 2)
 
 
 if __name__ == '__main__':
