@@ -1,6 +1,6 @@
 from unittest import TestCase
 from unittest.mock import patch
-from maze import print_board
+from sud import print_board
 import io
 
 
