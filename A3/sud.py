@@ -215,9 +215,11 @@ def update_board(character: dict) -> list:
 
 def describe(my_char):
     """
+    Fetch a room description depending on the character's coordinates.
 
-    :param my_char:
-    :return:
+    :param my_char: a character
+    :precondition: my_char must be a dictionary with a set of coordinates
+    :postcondition: a description of the current room will be printed
     """
     board_descriptions = {(0, 0): 'You wake up. You realize that you are in a maze of some sort. There are 2 doorways '
                                   'in this room: south and east.',
@@ -274,7 +276,6 @@ def describe(my_char):
                                   'there are any signs of civilization. No luck.'}
     key = my_char['coords']
     print(board_descriptions[key])
-
 
 
 def get_user_choice() -> tuple:
