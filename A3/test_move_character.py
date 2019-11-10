@@ -1,5 +1,5 @@
 from unittest import TestCase
-from maze import move_character
+from character import move_character
 
 
 class TestMove_character(TestCase):
