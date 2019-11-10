@@ -11,13 +11,11 @@ def game():
     char = character.create_character()
     game_board = update_board(char)
     monsters_killed = 0
-
     while char['current_hp'] > 0:
         print_board(game_board)  # Tell the user where they are
         direction = get_user_choice()  # Get user input and validate input
         if direction == 'quit':
             break
-
         if validate_move(game_board, char, direction):
             character.move_character(char, direction)
             game_board = update_board(char)
@@ -29,7 +27,6 @@ def game():
             print(f"HP: {char['current_hp']}/{char['max_hp']}")
         else:
             print("You can't go in that direction!")
-
     print(f"You killed {monsters_killed} monsters before you died.")
 
 
