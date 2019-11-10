@@ -61,7 +61,7 @@ board_descriptions = {(0, 0): 'You wake up. You realize that you are in a maze o
 class TestDescribe(TestCase):
 
     @patch("sys.stdout", new_callable=io.StringIO)
-    def test_describ_00(self, mock_output):
+    def test_describe_00(self, mock_output):
         test_char = {'name': "Link", 'coords': (0, 0), 'max_hp': 10, 'current_hp': 0, 'power': 6}
         expected = "You wake up. You realize that you are in a maze of some sort. " \
                    "There are 2 doorways in this room: south and east.\n"
@@ -69,7 +69,7 @@ class TestDescribe(TestCase):
         self.assertEqual(expected, mock_output.getvalue())
 
     @patch("sys.stdout", new_callable=io.StringIO)
-    def test_describ_44(self, mock_output):
+    def test_describe_44(self, mock_output):
         test_char = {'name': "Link", 'coords': (4, 4), 'max_hp': 10, 'current_hp': 0, 'power': 6}
         expected = "You find yourself in an open field. The grass is thick. " \
                    "You look around to see if there are any signs of civilization. No luck.\n"
