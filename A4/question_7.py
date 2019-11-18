@@ -1,4 +1,7 @@
-def myFunctionName():
+
+
+
+def calorie_counter():
     """
 
     :return:
