@@ -5,7 +5,7 @@ def eratosthenes(n: int) -> list:
     """
     Determine all the prime numbers up to n.
 
-    :param n: a positive integer
+    :param n: an integer
     :precondition: n must be a positive integer
     :postcondition: all primes will be returned
     :return: a list of all the primes up to n
