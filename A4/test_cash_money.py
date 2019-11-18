@@ -4,6 +4,11 @@ from question_5 import cash_money
 
 class TestCash_money(TestCase):
 
+    def test_cash_money_exception_negative(self):
+        test_cad = -10.00
+        expected = Exception
+        self.assertRaises(expected, cash_money, test_cad)
+
     def test_cash_money_exception(self):
         test_cad = 0
         expected = Exception
