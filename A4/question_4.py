@@ -20,6 +20,8 @@ def selection_sort(item_list: list) -> list:
     ['Bae', 'bae']
     >>> selection_sort([3.3, 1.1, 2.2])
     [1.1, 2.2, 3.3]
+    >>> selection_sort([False, True, False])
+    [False, False, True]
     """
     if not item_list:
         raise Exception("item_list must be a non-empty")
