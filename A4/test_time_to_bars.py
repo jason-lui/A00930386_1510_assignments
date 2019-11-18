@@ -4,5 +4,22 @@ from question_8 import time_to_bars
 
 class TestTime_to_bars(TestCase):
 
-    def test_time_to_bars(self):
-        self.fail()
+    def test_time_to_bars_10_08(self):
+        test_time_str = "10:08"
+        expected = 21
+        self.assertEqual(expected, time_to_bars(test_time_str))
+
+    def test_time_to_bars_1_23(self):
+        test_time_str = "1:23"
+        expected = 12
+        self.assertEqual(expected, time_to_bars(test_time_str))
+
+    def test_time_to_bars_4_56(self):
+        test_time_str = "4:56"
+        expected = 15
+        self.assertEqual(expected, time_to_bars(test_time_str))
+
+    def test_time_to_bars_7_89(self):
+        test_time_str = "7:89"
+        expected = 16
+        self.assertEqual(expected, time_to_bars(test_time_str))
