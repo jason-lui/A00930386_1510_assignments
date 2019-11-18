@@ -22,7 +22,7 @@ def gcd(a: int, b: int) -> int:
     -5
     >>> gcd(30, 12)
     6
-    >>> gcd(123, 36)
+    >>> gcd(36, 123)
     3
     """
     # Raise exception if both a and b are 0
@@ -32,6 +32,8 @@ def gcd(a: int, b: int) -> int:
     # If either a or b are 0, but not both return the non-zero
     if not a or not b:
         return a if a else b
+
+    a, b = max(a, b), min(a, b)
 
     while a % b != 0:
         a %= b  # Set a as the result of a % b
