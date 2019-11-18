@@ -8,7 +8,7 @@ def gcd(a: int, b: int) -> int:
     :param a: an integer
     :param b: an integer
     :precondition: a must be a non-zero integer
-    :precondition: a must be a non-zero integer
+    :precondition: b must be a non-zero integer
     :postcondition: the GCD will be calculated
     :return: the GCD as an integer
 
