@@ -1,27 +1,42 @@
-def selection_sort(arr: list) -> list:
+import doctest
+
+
+def selection_sort(item_list: list) -> list:
     """
+    Sorts a list of items using selection sort.
 
-    :param arr:
-    :return:
+    :param item_list: a list
+    :precondition: item_list must be a non-empty list of sortable items
+    :postcondition: the item_list will be sorted
+    :return: a sorted copy of item_list
+
+    >>> selection_sort([])
+    Traceback (most recent call last):
+    ...
+    Exception: item_list must be a non-empty
+    >>> selection_sort([3, 2, 1])
+    [1, 2, 3]
+    >>> selection_sort(['bae', 'Bae'])
+    ['Bae', 'bae']
+    >>> selection_sort([3.3, 1.1, 2.2])
+    [1.1, 2.2, 3.3]
     """
-    if not arr:
-        print("List is empty")
-        return
+    if not item_list:
+        raise Exception("item_list must be a non-empty")
 
-    sort_index = 0
+    list_copy = item_list[:]
+    write_index = 0
 
-    while sort_index < len(arr):
-        min_index = sort_index
-        for i in range(sort_index, len(arr)):
-            if arr[i] < arr[min_index]:
+    while write_index < len(list_copy):
+        min_index = write_index
+        for i in range(write_index, len(list_copy)):
+            if list_copy[i] < list_copy[min_index]:
                 min_index = i
-        arr[min_index], arr[sort_index] = arr[sort_index], arr[min_index]
-        sort_index += 1
+        list_copy[min_index], list_copy[write_index] = list_copy[write_index], list_copy[min_index]
+        write_index += 1
 
-    return arr
+    return list_copy
 
 
-# unsorted = [3, 5, 1, 9, -4]
-# sorted_copy = selection_sort(unsorted)
-# print(sorted_copy)
-# [-4, 1, 3, 5, 9]
+if __name__ == '__main__':
+    doctest.testmod()
