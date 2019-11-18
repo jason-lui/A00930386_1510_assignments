@@ -35,7 +35,7 @@ def eratosthenes(n: int) -> list:
             for j in range(i * 2, n + 1, i):
                 primes[j] = False
 
-    return [i for i in range(n + 1) if primes[i]]
+    return [i for i, prime in enumerate(primes) if prime]
 
 
 if __name__ == '__main__':
