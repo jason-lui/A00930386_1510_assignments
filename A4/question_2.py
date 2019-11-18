@@ -3,7 +3,7 @@ import doctest
 
 def gcd(a: int, b: int) -> int:
     """
-    Determine the greatest common denominator (GCD) of 2 integers.
+    Determine the greatest common divisor (GCD) of 2 integers.
 
     :param a: an integer
     :param b: an integer
