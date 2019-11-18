@@ -19,7 +19,7 @@ class TestTime_to_bars(TestCase):
         expected = 15
         self.assertEqual(expected, time_to_bars(test_time_str))
 
-    def test_time_to_bars_7_89(self):
-        test_time_str = "7:89"
-        expected = 16
+    def test_time_to_bars_empty(self):
+        test_time_str = ""
+        expected = 0
         self.assertEqual(expected, time_to_bars(test_time_str))
