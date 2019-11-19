@@ -25,12 +25,12 @@ def calorie_counter():
         new_item = input("Enter food item to add, or 'q' to exit: ")
 
 
-def print_food_calories(food_list: dict):
+def print_food_calories(food_dict: dict):
     """
     Print the a sorted list of foods, its total calorie count, and its average calorie per item.
 
-    :param food_list: a dictionary
-    :precondition: food_list must be a dictionary of food items as strings and their caloric values as ints
+    :param food_dict: a dictionary
+    :precondition: food_dict must be a dictionary of food items as strings and their caloric values as ints
     :postcondition: a sorted list of foods, a total calorie count, and an average calorie count will be printed
 
     >>> print_food_calories({"lettuce": 5, "carrot": 52, "apple": 72, "bread": 66})
@@ -39,10 +39,10 @@ def print_food_calories(food_list: dict):
     Total Calories: 195 Average Calories: 48.8
     <BLANKLINE>
     """
-    total_calories = sum([value for value in food_list.values()])
-    avg_calories = total_calories / len(food_list)
+    total_calories = sum([value for value in food_dict.values()])
+    avg_calories = total_calories / len(food_dict)
 
-    print("\nFood Items:", sorted(food_list.keys()))
+    print("\nFood Items:", sorted(food_dict.keys()))
     print("Total Calories:", total_calories, "Average Calories: %0.1f\n" % avg_calories)
 
 
