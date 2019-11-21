@@ -6,12 +6,12 @@ class TestEratosthenes(TestCase):
 
     def test_eratosthenes_exception_negative(self):
         upper_bound = -1
-        expected = Exception
+        expected = ValueError
         self.assertRaises(expected, eratosthenes, upper_bound)
 
     def test_eratosthenes_exception_0(self):
         upper_bound = 0
-        expected = Exception
+        expected = ValueError
         self.assertRaises(expected, eratosthenes, upper_bound)
 
     def test_eratosthenes_exception_1(self):

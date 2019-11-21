@@ -7,20 +7,20 @@ class TestGcd(TestCase):
     def test_gcd_exception(self):
         test_a = 0
         test_b = 0
-        expected = Exception
+        expected = ValueError
         self.assertRaises(expected, gcd, test_a, test_b)
 
     def test_gcd_exception_5_0(self):
         test_a = 5
         test_b = 0
-        expected = 5
-        self.assertEqual(expected, gcd(test_a, test_b))
+        expected = ValueError
+        self.assertRaises(expected, gcd, test_a, test_b)
 
     def test_gcd_exception_neg5_0(self):
         test_a = -5
         test_b = 0
-        expected = -5
-        self.assertEqual(expected, gcd(test_a, test_b))
+        expected = ValueError
+        self.assertRaises(expected, gcd, test_a, test_b)
 
     def test_gcd_exception_30_12(self):
         test_a = 30

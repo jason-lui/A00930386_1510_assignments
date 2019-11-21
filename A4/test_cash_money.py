@@ -6,12 +6,12 @@ class TestCash_money(TestCase):
 
     def test_cash_money_exception_negative(self):
         test_cad = -10.00
-        expected = Exception
+        expected = ValueError
         self.assertRaises(expected, cash_money, test_cad)
 
     def test_cash_money_exception(self):
         test_cad = 0
-        expected = Exception
+        expected = ValueError
         self.assertRaises(expected, cash_money, test_cad)
 
     def test_cash_money_0_01(self):

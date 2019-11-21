@@ -13,14 +13,14 @@ def cash_money(cad: float) -> dict:
     >>> cash_money(0)
     Traceback (most recent call last):
     ...
-    Exception: cad cannot be negative.
+    ValueError: cad cannot be 0 or lower.
     >>> cash_money(66.53)
     {50: 1, 10: 1, 5: 1, 1: 1, 0.25: 2, 0.01: 3}
     >>> cash_money(100)
     {100: 1}
     """
     if cad <= 0:
-        raise Exception("cad cannot be negative.")
+        raise ValueError("cad cannot be 0 or lower.")
 
     denominations = [100, 50, 20, 10, 5, 2, 1, 0.25, 0.10, 0.05, 0.01]
     money_dict = {}

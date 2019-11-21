@@ -13,7 +13,7 @@ def selection_sort(item_list: list) -> list:
     >>> selection_sort([])
     Traceback (most recent call last):
     ...
-    Exception: item_list must be a non-empty
+    ValueError: item_list must be a non-empty
     >>> selection_sort([3, 2, 1])
     [1, 2, 3]
     >>> selection_sort(['bae', 'Bae'])
@@ -24,7 +24,7 @@ def selection_sort(item_list: list) -> list:
     [False, False, True]
     """
     if not item_list:
-        raise Exception("item_list must be a non-empty")
+        raise ValueError("item_list must be a non-empty")
 
     list_copy = item_list[:]
     write_index = 0

@@ -6,7 +6,7 @@ class TestSelection_sort(TestCase):
 
     def test_selection_sort_exception(self):
         test_list = []
-        expected = Exception
+        expected = ValueError
         self.assertRaises(expected, selection_sort, test_list)
 
     def test_selection_sort_integers(self):
