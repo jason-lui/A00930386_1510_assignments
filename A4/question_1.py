@@ -32,8 +32,8 @@ def eratosthenes(n: int) -> list:
     for i in range(2, int(n ** 0.5) + 1):
         if primes[i]:  # Number is prime
             # Sieve the multiples of i
-            for j in range(i * 2, n + 1, i):
-                primes[j] = False
+            for multiple in range(i * 2, n + 1, i):
+                primes[multiple] = False
 
     return [i for i, prime in enumerate(primes) if prime]
 
