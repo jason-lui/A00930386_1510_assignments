@@ -10,9 +10,9 @@ class TestGcd(TestCase):
         expected = ZeroDivisionError
         self.assertRaises(expected, gcd, test_a, test_b)
 
-    def test_gcd_exception_5_0(self):
-        test_a = 5
-        test_b = 0
+    def test_gcd_exception_0_5(self):
+        test_a = 0
+        test_b = 5
         expected = ZeroDivisionError
         self.assertRaises(expected, gcd, test_a, test_b)
 
