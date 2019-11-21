@@ -26,6 +26,8 @@ def gcd(a: int, b: int) -> int:
     6
     >>> gcd(36, 123)
     3
+    >>> gcd(7, 7)
+    7
     """
     # Raise exception if either a or b are 0
     if not a or not b:
