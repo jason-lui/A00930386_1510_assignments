@@ -4,6 +4,18 @@ from question_3 import dijkstra
 
 class TestDijkstra(TestCase):
 
+    def test_dijkstra_empty(self):
+        sorted_test_list = []
+        expected = []
+        dijkstra(sorted_test_list)
+        self.assertEqual(expected, sorted_test_list)
+
+    def test_dijkstra_1_element(self):
+        sorted_test_list = ['red']
+        expected = ['red']
+        dijkstra(sorted_test_list)
+        self.assertEqual(expected, sorted_test_list)
+
     def test_dijkstra_already_sorted(self):
         sorted_test_list = ['red', 'red', 'red', 'white', 'white', 'white', 'blue', 'blue', 'blue']
         expected = ['red', 'red', 'red', 'white', 'white', 'white', 'blue', 'blue', 'blue']
@@ -31,5 +43,11 @@ class TestDijkstra(TestCase):
     def test_dijkstra_unsorted_no_blue(self):
         unsorted_test_list = ['red', 'white', 'red', 'red', 'white', 'white']
         expected = ['red', 'red', 'red', 'white', 'white', 'white']
+        dijkstra(unsorted_test_list)
+        self.assertEqual(expected, unsorted_test_list)
+
+    def test_dijkstra_unsorted_just_red(self):
+        unsorted_test_list = ['red', 'red', 'red', 'red', 'red', 'red', 'red']
+        expected = ['red', 'red', 'red', 'red', 'red', 'red', 'red']
         dijkstra(unsorted_test_list)
         self.assertEqual(expected, unsorted_test_list)
