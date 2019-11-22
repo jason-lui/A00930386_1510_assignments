@@ -8,11 +8,15 @@ def im_not_sleepy() -> str:
     :postcondition: the times that requires the most bars will be returned as a string
     :return: a string of the time that requires the most amount of bars
     """
+    # Calculate the maximum bars per number position
     hours = str(max_bars(1, 12))
     tens = str(max_bars(0, 5))
     minutes = str(max_bars(0, 9))
 
+    # Concatenate result into time format
     max_time = hours + ":" + tens + minutes
+
+    # Calculate the number of bars the time required
     bar_total = time_to_bars(max_time)
 
     return f"{max_time} uses the most number of bars ({bar_total}) to represent."
@@ -44,6 +48,7 @@ def max_bars(lower_bound: int, upper_bound: int) -> int:
         if bar_dict[i] > max_bar_value:
             max_bar_value = bar_dict[i]
             max_bar_num = i
+
     return max_bar_num
 
 
@@ -63,7 +68,7 @@ def time_to_bars(time_str: str) -> int:
     total_bars = 0
 
     for char in time_str:
-        if char.isnumeric():
+        if char.isnumeric():  # Ignore the colon
             total_bars += bar_dict[int(char)]
 
     return total_bars
