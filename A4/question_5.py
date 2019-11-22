@@ -16,19 +16,28 @@ def cash_money(cad: float) -> dict:
     ValueError: cad cannot be 0 or lower.
     >>> cash_money(66.53)
     {50: 1, 10: 1, 5: 1, 1: 1, 0.25: 2, 0.01: 3}
+    >>> cash_money(99.99)
+    {50: 1, 20: 2, 5: 1, 2: 2, 0.25: 3, 0.1: 2, 0.01: 4}
     >>> cash_money(100)
     {100: 1}
     """
     if cad <= 0:
         raise ValueError("cad cannot be 0 or lower.")
 
-    denominations = [100, 50, 20, 10, 5, 2, 1, 0.25, 0.10, 0.05, 0.01]
     money_dict = {}
+    big_d = [100, 50, 20, 10, 5, 2, 1]
+    small_d = [25, 10, 5, 1]  # in cents
+    dollars = int(cad)
+    cents = round((cad - dollars) * 100, 2)
 
-    for d in denominations:
-        if cad // d > 0:
-            money_dict[d] = int(cad // d)
-            cad %= d
+    for d in big_d:
+        while dollars >= d:
+            money_dict[d] = int(dollars // d)
+            dollars %= d
+    for d in small_d:
+        while cents >= d:
+            money_dict[d / 100] = int(cents // d)
+            cents %= d
 
     return money_dict
 
