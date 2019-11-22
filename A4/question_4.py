@@ -13,7 +13,7 @@ def selection_sort(item_list: list) -> list:
     >>> selection_sort([])
     Traceback (most recent call last):
     ...
-    ValueError: item_list must be a non-empty
+    ValueError: item_list must have elements
     >>> selection_sort([3, 2, 1])
     [1, 2, 3]
     >>> selection_sort(['bae', 'Bae'])
@@ -23,21 +23,21 @@ def selection_sort(item_list: list) -> list:
     >>> selection_sort([False, True, False])
     [False, False, True]
     """
-    if not item_list:
-        raise ValueError("item_list must be a non-empty")
+    if not item_list:  # Empty list
+        raise ValueError("item_list must have elements")
 
-    list_copy = item_list[:]
-    write_index = 0
+    copy = item_list[:]  # Copy the list to preserve original list
 
-    while write_index < len(list_copy):
-        min_index = write_index
-        for i in range(write_index, len(list_copy)):
-            if list_copy[i] < list_copy[min_index]:
-                min_index = i
-        list_copy[min_index], list_copy[write_index] = list_copy[write_index], list_copy[min_index]
-        write_index += 1
+    for write_in, value in enumerate(copy):
+        # Set min_in to remember which index the function will write to
+        min_in = write_in
 
-    return list_copy
+        for i in range(write_in, len(copy)):
+            if copy[i] < copy[min_in]:  # There is a lower number
+                min_in = i
+        copy[min_in], copy[write_in] = copy[write_in], copy[min_in]  # Swap the values
+
+    return copy
 
 
 if __name__ == '__main__':

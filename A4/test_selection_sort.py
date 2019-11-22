@@ -9,6 +9,11 @@ class TestSelection_sort(TestCase):
         expected = ValueError
         self.assertRaises(expected, selection_sort, test_list)
 
+    def test_selection_sort_1_element(self):
+        test_list = [0]
+        expected = [0]
+        self.assertEqual(expected, selection_sort(test_list))
+
     def test_selection_sort_integers(self):
         test_list = [3, 1, 2, 0]
         expected = [0, 1, 2, 3]
