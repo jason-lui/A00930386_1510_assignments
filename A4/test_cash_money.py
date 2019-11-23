@@ -164,7 +164,7 @@ class TestCash_money(TestCase):
         expected = {100: 1}
         self.assertEqual(expected, cash_money(test_cad))
 
-    def test_cash_money_183_45(self):
-        test_cad = 183.45
-        expected = {0.1: 2, 0.25: 1, 1: 1, 2: 1, 10: 1, 20: 1, 50: 1, 100: 1}
+    def test_cash_money_183_59(self):
+        test_cad = 183.59
+        expected = {0.01: 4, 0.05: 1, 0.25: 2, 1: 1, 2: 1, 10: 1, 20: 1, 50: 1, 100: 1}
         self.assertEqual(expected, cash_money(test_cad))
