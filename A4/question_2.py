@@ -15,11 +15,11 @@ def gcd(a: int, b: int) -> int:
     >>> gcd(0, 0)
     Traceback (most recent call last):
     ...
-    ZeroDivisionError: Neither a and b can be 0.
+    ZeroDivisionError: Neither a or b can be 0.
     >>> gcd(5, 0)
     Traceback (most recent call last):
     ...
-    ZeroDivisionError: Neither a and b can be 0.
+    ZeroDivisionError: Neither a or b can be 0.
     >>> gcd(-25, 15)
     5
     >>> gcd(30, 12)
@@ -31,7 +31,7 @@ def gcd(a: int, b: int) -> int:
     """
     # Raise exception if either a or b are 0
     if not a or not b:
-        raise ZeroDivisionError("Neither a and b can be 0.")
+        raise ZeroDivisionError("Neither a or b can be 0.")
 
     a, b = max(a, b), min(a, b)
     while a % b != 0:
