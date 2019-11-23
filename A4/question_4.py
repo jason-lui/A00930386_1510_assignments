@@ -16,8 +16,8 @@ def selection_sort(item_list: list) -> list:
     ValueError: item_list must have elements
     >>> selection_sort([3, 2, 1])
     [1, 2, 3]
-    >>> selection_sort(['bae', 'Bae'])
-    ['Bae', 'bae']
+    >>> selection_sort(['bae', 'Bae', 'bAe'])
+    ['Bae', 'bAe', 'bae']
     >>> selection_sort([3.3, 1.1, 2.2])
     [1.1, 2.2, 3.3]
     >>> selection_sort([False, True, False])

@@ -20,8 +20,8 @@ class TestSelection_sort(TestCase):
         self.assertEqual(expected, selection_sort(test_list))
 
     def test_selection_sort_strings(self):
-        test_list = ['bae', 'Bae', 'xX']
-        expected = ['Bae', 'bae', 'xX']
+        test_list = ['bae', 'Bae', 'xX', 'bAe']
+        expected = ['Bae', 'bAe', 'bae', 'xX']
         self.assertEqual(expected, selection_sort(test_list))
 
     def test_selection_sort_floats(self):
