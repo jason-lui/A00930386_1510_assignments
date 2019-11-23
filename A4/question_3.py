@@ -7,7 +7,7 @@ def dijkstra(dutch: list):
     :postcondition: the list will be sorted by 'red', 'white', 'blue' in place
     """
     red, mid, blue = 0, 0, len(dutch) - 1
-    while mid < blue:
+    while mid <= blue:
         # Element is red, sort it to the beginning of the list
         if dutch[mid] == "red":
             dutch[mid], dutch[red] = dutch[red], dutch[mid]
