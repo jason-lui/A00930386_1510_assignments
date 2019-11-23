@@ -13,7 +13,11 @@ def cash_money(cad: float) -> dict:
     >>> cash_money(0)
     Traceback (most recent call last):
     ...
-    ValueError: cad cannot be 0 or lower.
+    ValueError: cad must be a positive float with max 2 decimal places.
+    >>> cash_money(6.553)
+    Traceback (most recent call last):
+    ...
+    ValueError: cad must be a positive float with max 2 decimal places.
     >>> cash_money(66.53)
     {50: 1, 10: 1, 5: 1, 1: 1, 0.25: 2, 0.01: 3}
     >>> cash_money(99.99)
@@ -21,8 +25,8 @@ def cash_money(cad: float) -> dict:
     >>> cash_money(100)
     {100: 1}
     """
-    if cad <= 0:
-        raise ValueError("cad cannot be 0 or lower.")
+    if cad <= 0 or cad != round(cad, 2):
+        raise ValueError("cad must be a positive float with max 2 decimal places.")
 
     money_dict = {}
     big_d = [100, 50, 20, 10, 5, 2, 1]

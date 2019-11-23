@@ -14,6 +14,11 @@ class TestCash_money(TestCase):
         expected = ValueError
         self.assertRaises(expected, cash_money, test_cad)
 
+    def test_cash_money_exception_3_decimals(self):
+        test_cad = 6.653
+        expected = ValueError
+        self.assertRaises(expected, cash_money, test_cad)
+
     def test_cash_money_0_01(self):
         test_cad = 0.01
         expected = {0.01: 1}
