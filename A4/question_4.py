@@ -17,7 +17,7 @@ def selection_sort(item_list: list) -> list:
     >>> selection_sort([False, True, [2, 3]])
     Traceback (most recent call last):
     ...
-    TypeError: item_list must contain only sortable objects
+    TypeError: '<' not supported between instances of 'list' and 'bool'
     >>> selection_sort([3, 2, 1])
     [1, 2, 3]
     >>> selection_sort(['bae', 'Bae', 'bAe'])
@@ -36,11 +36,8 @@ def selection_sort(item_list: list) -> list:
     for write_in, value in enumerate(copy):
         min_in = write_in  # Set min_in to remember which index the function will write to
         for i in range(write_in, len(copy)):
-            try:
-                if copy[i] < copy[min_in]:  # There is a lower number
-                    min_in = i
-            except TypeError:
-                raise TypeError("item_list must contain only sortable objects")
+            if copy[i] < copy[min_in]:  # There is a lower number
+                min_in = i
         copy[min_in], copy[write_in] = copy[write_in], copy[min_in]  # Swap the values
 
     return copy
