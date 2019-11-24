@@ -4,9 +4,14 @@ from question_4 import selection_sort
 
 class TestSelection_sort(TestCase):
 
-    def test_selection_sort_exception(self):
+    def test_selection_sort_ValueError(self):
         test_list = []
         expected = ValueError
+        self.assertRaises(expected, selection_sort, test_list)
+
+    def test_selection_sort_TypeError(self):
+        test_list = [False, True, [2, 3]]
+        expected = TypeError
         self.assertRaises(expected, selection_sort, test_list)
 
     def test_selection_sort_1_element(self):
