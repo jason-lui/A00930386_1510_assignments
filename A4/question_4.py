@@ -14,10 +14,6 @@ def selection_sort(item_list: list) -> list:
     Traceback (most recent call last):
     ...
     ValueError: item_list must have elements
-    >>> selection_sort([False, True, [2, 3]])
-    Traceback (most recent call last):
-    ...
-    TypeError: '<' not supported between instances of 'list' and 'bool'
     >>> selection_sort([3, 2, 1])
     [1, 2, 3]
     >>> selection_sort(['bae', 'Bae', 'bAe'])
@@ -26,7 +22,6 @@ def selection_sort(item_list: list) -> list:
     [1.1, 2.2, 3.3]
     >>> selection_sort([False, True, False])
     [False, False, True]
-
     """
     if not item_list:  # Empty list
         raise ValueError("item_list must have elements")
