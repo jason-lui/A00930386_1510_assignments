@@ -41,7 +41,6 @@ def selection_sort(item_list: list) -> list:
                     min_in = i
             except TypeError:
                 raise TypeError("item_list must contain only sortable objects")
-
         copy[min_in], copy[write_in] = copy[write_in], copy[min_in]  # Swap the values
 
     return copy
